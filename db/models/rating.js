@@ -1,12 +1,24 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Rating = sequelize.define('Rating', {
-    userId: DataTypes.INTEGER,
-    gameId: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER
+    userId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: { model: 'Users' }
+    },
+    gameId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: { model: 'Games' }
+    },
+    rating: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
   }, {});
   Rating.associate = function(models) {
-    // associations can be defined here
+    Rating.belongsTo(model.User, { foreignKey: 'userId'})
+    Rating.belongsTo(model.Game, { foreignKey: 'gameId'})
   };
   return Rating;
 };
