@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../db/models')
 const { csrfProtection, asyncHandler } = require('./utils');
-const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validation');
 const { userValidator } = require('./validation');
 const bcrypt = require('bcryptjs');
 
 /* GET users listing. */
 router.get('/sign-up', csrfProtection, function(req, res, next) {
   const user = User.build();
-  res.render('registration', { 
+  res.render('registration', {
     title,
     user,
     csrfToken: req.csrfToken(),
@@ -25,7 +25,7 @@ router.post('/sign-up', userValidator, csrfProtection, asyncHandler(async(req, r
     email,
     bio
   });
-  
+
   const validationErrors = validationResult(req);
   //have to set up try/catch here
   if (validationErrors.isEmpty()) {
@@ -36,7 +36,7 @@ router.post('/sign-up', userValidator, csrfProtection, asyncHandler(async(req, r
     res.redirect('/home');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('registration', { 
+    res.render('registration', {
       title: 'Register',
       user,
       errors,
