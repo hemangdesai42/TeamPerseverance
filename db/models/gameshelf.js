@@ -2,17 +2,17 @@
 module.exports = (sequelize, DataTypes) => {
   const GameShelf = sequelize.define('GameShelf', {
     category: {
-      type: Sequelize.ENUM,
+      type: DataTypes.ENUM,
       values: ['Played', 'Playing', 'Wishlist'],
       allowNull: false
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'Users' }
     },
     gameId: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: { model: 'Games' }
     },

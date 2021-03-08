@@ -1,1 +1,17 @@
-extends layout
+extends layout.pug
+
+block content
+    form(action="/users/sign-up" method="POST")
+        input(name="_csrf" value=csrfToken type="hidden")
+        div
+            label(for="name") Name
+            input(name="name" value= user.name type="text")
+        div
+            label(for="name") Name
+            input(name="name" value= user.name type="text")
+        div
+            label(for="name") Name
+            input(name="name" value= user.name type="text")
+        div
+            label(for="name") Name
+            input(name="name" value= user.name type="text")
