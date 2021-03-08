@@ -7,4 +7,8 @@ module.exports = {
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
   },
+  config: {
+    secret: process.env.SESSION_SECRET,
+    expiresIn: process.env.SESSION_TIMEOUT,
+  }
 };

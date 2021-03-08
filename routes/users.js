@@ -64,7 +64,9 @@ router.post('/login', csrfProtection, loginValidator, asyncHandler(async (req, r
     if (user !== null) {
       const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
       if (passwordMatch) {
+        
         // login user
+        console.log('Logged in')
         // redirect to home page (remember to return)
       } else {
         // password doesn't match
@@ -80,5 +82,7 @@ router.post('/login', csrfProtection, loginValidator, asyncHandler(async (req, r
   }
   res.render('login', { title: 'Login', errors, csrfToken: req.csrfToken() });
 }));
+
+//DO DEMO USER
 
 module.exports = router;
