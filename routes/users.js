@@ -3,7 +3,7 @@ const router = express.Router();
 const { User } = require('../db/models')
 const { csrfProtection, asyncHandler } = require('./utils');
 const { validationResult } = require('express-validator');
-const { userValidator } = require('./validation');
+const { userValidator, loginValidator } = require('./validation');
 const bcrypt = require('bcryptjs');
 
 /* GET users listing. */
@@ -33,6 +33,7 @@ router.post('/sign-up', userValidator, csrfProtection, asyncHandler(async(req, r
     user.hashPassword = hashedPassword;
     await user.save();
     //adjust route accordingly
+    //login user
     res.redirect('/home');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
@@ -43,6 +44,41 @@ router.post('/sign-up', userValidator, csrfProtection, asyncHandler(async(req, r
       csrfToken: req.csrfToken(),
     });
   }
+}));
+
+router.get('/login', csrfProtection, asyncHandler(async (req, res, next) => {
+  res.render('login', { title: 'Login', csrfToken: req.csrfToken() });
+}));
+
+router.post('/login', csrfProtection, loginValidator, asyncHandler(async (req, res, next) => {
+  const { userName, password } = req.body;
+  const validatorErrors = validationResult(req);
+  let errors = [];
+  if (validatorErrors.isEmpty()) {
+    const user = await User.findOne({where: {userName}});
+    // if (user && await bcrypt.compare(password, user.hashPassword.toString()) {
+    //   // successful login
+    // } else {
+    //   // user doesnt exist OR password mismatch
+    // }
+    if (user !== null) {
+      const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
+      if (passwordMatch) {
+        // login user
+        // redirect to home page (remember to return)
+      } else {
+        // password doesn't match
+        errors.push('Login failed for the provided User Name and Password');
+      }
+    } else {
+      // user doesn't exist in db
+      errors.push('Login failed for the provided User Name and Password');
+    }
+  } else {
+    // validator error
+    errors = validatorErrors.array().map(error => error.msg);
+  }
+  res.render('login', { title: 'Login', errors, csrfToken: req.csrfToken() });
 }));
 
 module.exports = router;
