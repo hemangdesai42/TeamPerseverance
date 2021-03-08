@@ -14,8 +14,11 @@ const userValidator = [
     //     .withMessage('User Name must not be more than 50 characters long'),
 ]
 
+const loginValidator = [
 
+];
 
 module.exports = {
-    userValidator
+    userValidator,
+    loginValidator
 }
