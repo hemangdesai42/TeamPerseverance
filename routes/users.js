@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../db/models')
 const { csrfProtection, asyncHandler } = require('./utils');
-const { validationResult } = require('express-validation');
+const { validationResult } = require('express-validator');
 const { userValidator } = require('./validation');
 const bcrypt = require('bcryptjs');
 
 /* GET users listing. */
 router.get('/sign-up', csrfProtection, function(req, res, next) {
   const user = User.build();
-  res.render('registration', {
-    title,
+  res.render('sign-up', {
+    title: 'Registration',
     user,
     csrfToken: req.csrfToken(),
   });
@@ -36,7 +36,7 @@ router.post('/sign-up', userValidator, csrfProtection, asyncHandler(async(req, r
     res.redirect('/home');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('registration', {
+    res.render('sign-up', {
       title: 'Register',
       user,
       errors,
