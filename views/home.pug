@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    header
+        if user
+            p Welcome, #{user.name}!
+            a(href="/users/logout" role="button") Logout
+        else
+            a(href="/users/sign-up" role="button") Sign Up
+            br
+            a(href="/users/login" role="button") Login
+
