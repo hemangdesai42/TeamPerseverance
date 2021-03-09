@@ -23,7 +23,7 @@ module.exports = {
       },
       releaseDate: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING(50)
       },
       platform: {
         allowNull: false,
