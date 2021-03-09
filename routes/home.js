@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     if ( res.locals.authenticated) {
         user = res.locals.user
     }
-
+    console.log(user);
 
     res.render('home', {user, title: "Homepage"})
 })

@@ -37,7 +37,7 @@ router.post('/sign-up', userValidator, csrfProtection, asyncHandler(async(req, r
     //adjust route accordingly
     //login user
     logInUser(req, res, user);
-    res.redirect('/home');
+    return res.redirect('/home');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('sign-up', {
@@ -68,9 +68,7 @@ router.post('/login', csrfProtection, loginValidator, asyncHandler(async (req, r
       const passwordMatch = await bcrypt.compare(password, user.hashPassword.toString());
       if (passwordMatch) {
         logInUser(req, res, user)
-        // login user
-        console.log('Logged in')
-        // redirect to home page (remember to return)
+        return res.redirect('/home');
       } else {
         // password doesn't match
         errors.push('Login failed for the provided User Name and Password');
@@ -86,9 +84,10 @@ router.post('/login', csrfProtection, loginValidator, asyncHandler(async (req, r
   res.render('login', { title: 'Login', errors, csrfToken: req.csrfToken() });
 }));
 
-
-
-
+router.get('/logout', (req, res) => {
+  logOutUser(req, res);
+  return res.redirect('/home');
+});
 
 //DO DEMO USER
 
