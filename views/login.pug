@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    if errors
+        each error in errors
+            div= error
+    form(action='/users/login' method='POST')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+            label(for="userName") User Name
+            input(name="userName" type="text" required)
+        div
+            label(for="password") Password
+            input(name="password" type="password" required)
+        div 
+            button(type="submit") Login
+
