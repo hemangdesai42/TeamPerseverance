@@ -4,48 +4,42 @@ block head
     link(rel='stylesheet' href='/stylesheets/sign-up.css')
 
 block content
-    if errors
-        each error in errors
-            div= error
     div#logo-div
         a(href='/home')
-            img(src='../images/console-game-logo.png')
+            img(src='../images/console-game-logo.png')  
     div#sign-up-container
-        div
+        div#sign-up-title
             h1 Sign Up for Console.Game
         div#sign-up-form
             form(action="/users/sign-up" method="POST")
                 input(name="_csrf" value=csrfToken type="hidden")
-                div.label-container
+                div.input-container
                     label(for="name") Name
-                div.input-container
                     input(name="name" value=user.name type="text" placeholder='name...')
-                div.label-container
+                div.input-container
                     label(for="userName") User Name
-                div.input-container
                     input(name="userName" value=user.userName type="text", placeholder='username...')
-                div.label-container
+                div.input-container
                     label(for="email") Email
-                div.input-container
                     input(name="email" value=user.email type="email", placeholder="gamer@console.com")
-                div.label-container
+                div.input-container
                     label(for="password") Password
-                div.input-container
                     input(name="password"  type="password")
-                div.label-container
+                div.input-container
                     label(for="confirmPassword") Confirm Password
-                div.input-container
                     input(name="confirmPassword"  type="password")
-                div.label-container
-                    label(for="bio") Bio
                 div.input-container
+                    label(for="bio") Bio
                     textarea(name="bio" placeholder="Tell us about yourself")
                 div.submit-container
-                    button(type="submit") Submit
-                    label(for="sign-in") Already have an account?
-                    a(href="/users/login") Sign In
-
-
+                    button(type="submit") Sign Up
+                    a(href="/users/login") Registered?
+    if errors
+        div#errors-container
+            h1 Placeholder
+            ul
+                each error in errors
+                    li= error
 
 
 //-- add placeholder text to each field
