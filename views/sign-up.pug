@@ -1,31 +1,49 @@
 extends layout
 
+block head
+    link(rel='stylesheet' href='/stylesheets/sign-up.css')
+
 block content
     if errors
         each error in errors
             div= error
-    form(action="/users/sign-up" method="POST")
-        input(name="_csrf" value=csrfToken type="hidden")
+    div#logo-div
+        a(href='/home')
+            img(src='../images/console-game-logo.png')
+    div#sign-up-container
         div
-            label(for="name") Name
-            input(name="name" value=user.name type="text")
-        div
-            label(for="userName") User Name
-            input(name="userName" value=user.userName type="text")
-        div
-            label(for="email") Email
-            input(name="email" value=user.email type="email")
-        div
-            label(for="password") Password
-            input(name="password"  type="password")
-        div
-            label(for="confirmPassword") Confirm Password
-            input(name="confirmPassword"  type="password")
-        div
-            label(for="bio") Bio
-            textarea(name="bio")
-        div
-            button(type="submit") Submit
+            h1 Sign Up for Console.Game
+        div#sign-up-form
+            form(action="/users/sign-up" method="POST")
+                input(name="_csrf" value=csrfToken type="hidden")
+                div.label-container
+                    label(for="name") Name
+                div.input-container
+                    input(name="name" value=user.name type="text" placeholder='name...')
+                div.label-container
+                    label(for="userName") User Name
+                div.input-container
+                    input(name="userName" value=user.userName type="text", placeholder='username...')
+                div.label-container
+                    label(for="email") Email
+                div.input-container
+                    input(name="email" value=user.email type="email", placeholder="gamer@console.com")
+                div.label-container
+                    label(for="password") Password
+                div.input-container
+                    input(name="password"  type="password")
+                div.label-container
+                    label(for="confirmPassword") Confirm Password
+                div.input-container
+                    input(name="confirmPassword"  type="password")
+                div.label-container
+                    label(for="bio") Bio
+                div.input-container
+                    textarea(name="bio" placeholder="Tell us about yourself")
+                div.submit-container
+                    button(type="submit") Submit
+                    label(for="sign-in") Already have an account?
+                    a(href="/users/login") Sign In
 
 
 
