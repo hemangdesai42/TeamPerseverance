@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    if errors
+        each error in errors
+            div= error
+    form(action="/users/sign-up" method="POST")
+        input(name="_csrf" value=csrfToken type="hidden")
+        div
+            label(for="name") Name
+            input(name="name" value=user.name type="text")
+        div
+            label(for="userName") User Name
+            input(name="userName" value=user.userName type="text")
+        div
+            label(for="email") Email
+            input(name="email" value=user.email type="email")
+        div
+            label(for="password") Password
+            input(name="password"  type="password")
+        div
+            label(for="confirmPassword") Confirm Password
+            input(name="confirmPassword"  type="password")
+        div
+            label(for="bio") Bio
+            textarea(name="bio")
+        div
+            button(type="submit") Submit
+
+
+
+
+//-- add placeholder text to each field
