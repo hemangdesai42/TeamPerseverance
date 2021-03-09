@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'ROG';
+  src: url('../fonts/batmfa__.ttf');
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/sign-up-background.jpeg');
+  background-size: cover;
+  font-family: ROG;
+}
+
+
+/* #sign-up-form {
+  border-style: dotted;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+} */
+
+#sign-up-container {
+  border-style: solid;
+  border-radius: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(2, 90, 56, 0.7);
+  padding: 20px;
+  /* box-shadow: 5px 10px; */
+}
+
+#logo-div {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+}
+
+#logo-div img {
+  height: 70%;
+  width: 70%;
+  /* Center the logo */
+}
+
+.label-container, .input-container, .submit-container {
+  text-align: center;
+}
+
+.input-container textarea {
+  resize: none;
+  width: 50%; /* Adjust width/height later */
+  height: 50%;
+}
+
+input, textarea {
+  background-color: lightgray;
+  border-radius: 5px;
+  border-color: rgb(2, 90, 56);
+  border-style: solid;
+}
