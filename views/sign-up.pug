@@ -8,19 +8,19 @@ block content
         input(name="_csrf" value=csrfToken type="hidden")
         div
             label(for="name") Name
-            input(name="name" value=user.name type="text" required)
+            input(name="name" value=user.name type="text")
         div
             label(for="userName") User Name
-            input(name="userName" value=user.userName type="text" required)
+            input(name="userName" value=user.userName type="text")
         div
             label(for="email") Email
-            input(name="email" value=user.email type="email" required)
+            input(name="email" value=user.email type="email")
         div
             label(for="password") Password
-            input(name="password"  type="password" required)
+            input(name="password"  type="password")
         div
             label(for="confirmPassword") Confirm Password
-            input(name="confirmPassword"  type="password" required)
+            input(name="confirmPassword"  type="password")
         div
             label(for="bio") Bio
             textarea(name="bio")
