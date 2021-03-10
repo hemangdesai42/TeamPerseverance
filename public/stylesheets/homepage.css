@@ -32,6 +32,11 @@ html, body {
 
 }
 
+.main__game {
+    display: inline-block;
+    margin: auto;
+}
+
 .logout {
     grid-area: h4;
     font-size: 25px;
