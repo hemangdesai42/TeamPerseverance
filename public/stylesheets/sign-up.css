@@ -1,0 +1,140 @@
+@font-face {
+  font-family: 'ROG';
+  src: url('../fonts/batmfa__.ttf');
+}
+
+/* @font-face {
+  font-family: 'HollowPoint';
+  src: url('../fonts/HollowPoint-ezrx.otf');
+} */
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/sign-up-background.jpeg');
+  background-size: cover;
+  font-family: ROG;
+}
+
+#sign-up-container {
+  border-style: solid;
+  border-radius: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(2, 90, 56, 0.7);
+  padding: 20px;
+  /* box-shadow: 5px 10px; */
+}
+
+/* #sign-up-title {
+  font-size:
+} */
+
+#logo-div {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  transform: translateX(-50%);
+}
+
+#logo-div img {
+  display: block;
+  margin: auto;
+}
+
+#logo-div img {
+  height: 70%;
+  width: 70%;
+  /* Center the logo */
+}
+
+.input-container, .submit-container {
+  text-align: center;
+}
+
+.input-container label {
+  display: block;
+  text-align: left;
+  position: relative;
+  left: 30.5%;
+}
+
+.input-container {
+  padding-top: 10px;
+
+}
+
+.input-container textarea {
+  resize: none;
+  width: 40%; /* Adjust width/height later */
+  height: 80px;
+}
+
+input, textarea {
+  background-color: lightgray;
+  border-radius: 5px;
+  border-color: rgb(2, 90, 56);
+  border-style: solid;
+  padding: 2px 0;
+  font-size: 15px;
+  font-family: HollowPoint;
+  width: 40%;
+  height: 22px;
+}
+
+.submit-container h3, .submit-container a {
+  margin: 0 5px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.submit-container button {
+  font-family: ROG;
+  font-size: 1.2rem;
+  padding: 3px;
+  width: fit-content;
+  margin: 0px auto 5px auto;
+  display: block;
+}
+
+.submit-container {
+  padding-top: 10px;
+}
+
+#errors-container {
+  color: red;
+  font-size: 0.95rem;
+  position: absolute;
+  border: 2px solid #cc0000;
+  border-radius: 5px;
+  padding: 0 10px;
+  top: 80%;
+  left: 50%;
+  width: fit-content;
+  transform: translateX(-50%);
+  text-shadow: 1px 1px rgb(0,0,0);
+}
+
+#errors-container ul {
+  list-style-type: none;
+}
+
+.submit-container a {
+  /* color: */
+}
+
+.submit-container a:hover {
+  /* color:  */
+}
+
+.submit-container a:visited {
+  color: orange;
+}
