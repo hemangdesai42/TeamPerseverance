@@ -24,9 +24,15 @@ block content
         div.game-options
             if user & gameshelf
                 div= gameshelf.category
+                    //- each shelf in gameshelf.category
             else if user
-                div= 'Add to GameShelf'
+                div.gameShelf__dropDown
+                    button.gameShelf__dropDown-btn= "Add to gameshelf"
+                    div.gameShelf__dropDown-content
+                        a(href='')= "Add to Played"
+                        a(href='')= "Add to Playing"
+                        a(href='')= "Add to Wishlist"
             else
-                div= 'Not logged in'
+                div= 'Login to add to gameshelf'
         div.game-reviews
             include reviews
