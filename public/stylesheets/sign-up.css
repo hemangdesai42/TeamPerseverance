@@ -13,7 +13,7 @@ html, body {
   min-height: 100%;
   margin: 0;
   padding: 0;
-  background-image: url('../images/sign-up-background.jpeg');
+  background-image: url('../images/wp8138620.jpeg');
   background-size: cover;
   font-family: ROG;
 }
@@ -29,7 +29,7 @@ html, body {
   margin: auto;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(2, 90, 56, 0.7);
+  background-color: rgb(95, 95, 95);
   padding: 20px;
   /* box-shadow: 5px 10px; */
 }
@@ -81,7 +81,7 @@ html, body {
 input, textarea {
   background-color: lightgray;
   border-radius: 5px;
-  border-color: rgb(2, 90, 56);
+  border-color: rgb(0, 0, 0);
   border-style: solid;
   padding: 2px 0;
   font-size: 15px;
@@ -127,14 +127,33 @@ input, textarea {
   list-style-type: none;
 }
 
-.submit-container a {
-  /* color: */
+.submit-container {
+  transition: all 0.2s ease-in-out;
 }
 
 .submit-container a:hover {
-  /* color:  */
+  transform: scale(1.05)
 }
 
 .submit-container a:visited {
-  color: orange;
+  color: grey;
 }
+
+.demo-container a {
+  font-size: 12px;
+  border: 3px solid white;
+  padding: 3px;
+  text-decoration: underline white;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.demo-container {
+  transition: all 0.2s ease-in-out;
+}
+
+.demo-container:hover {
+  /* box-shadow: 5px 5px rgba(152, 140, 140, 0.7); */
+  transform: scale(1.05)
+}
+
