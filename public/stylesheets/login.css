@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'ROG';
+    src: url('../fonts/batmfa__.ttf');
+  }
+
+  html, body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/wp8138620.jpeg');
+    background-size: cover;
+    font-family: ROG;
+  }
+
+  .login-container {
+    border-style: solid;
+    border-radius: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgb(95, 95, 95);
+    padding: 20px;
+    /* box-shadow: 5px 10px; */
+  }
+
+  #logo-div {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+  }
+
+  #logo-div img {
+    display: block;
+    margin: auto;
+  }
+
+  #logo-div img {
+    height: 70%;
+    width: 70%;
+    /* Center the logo */
+  }
+
+  .input-container {
+    text-align: center;
+  }
+
+  .input-container label {
+    display: block;
+    position: relative;
+    font-size: 20px;
+  }
+
+  .input-container {
+    padding-top: 10px;
+
+  }
+
+  .input-container textarea {
+    resize: none;
+    width: 100%; /* Adjust width/height later */
+    height: 80px;
+
+  }
+
+  input, textarea {
+    background-color: lightgray;
+    border-radius: 5px;
+    border-color: rgb(0, 0, 0);
+    border-style: solid;
+    padding: 2px 0;
+    font-size: 15px;
+    font-family: HollowPoint;
+    width: 100%;
+    height: 26px;
+  }
+
+  .input-container .login {
+    font-family: ROG;
+    font-size: 1.2rem;
+    padding: 3px;
+    width: fit-content;
+    margin: 0px auto 5px auto;
+    display: block;
+    border-radius: 5px;
+  }

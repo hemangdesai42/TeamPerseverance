@@ -1,17 +1,23 @@
 extends layout
 
+block append head
+    link(rel='stylesheet' href='/stylesheets/login.css')
+
 block content
+    div#logo-div
+        a(href='/home')
+            img(src='../images/console-game-logo.png')
+    div.login-container
+        form(action='/users/login' method='POST')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            div.input-container
+                label(for="userName") User Name
+                input(name="userName" type="text" required)
+            div.input-container
+                label(for="password") Password
+                input(name="password" type="password" required)
+            div.input-container
+                button(type="submit" class="login") Login
     if errors
         each error in errors
             div= error
-    form(action='/users/login' method='POST')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        div
-            label(for="userName") User Name
-            input(name="userName" type="text" required)
-        div
-            label(for="password") Password
-            input(name="password" type="password" required)
-        div 
-            button(type="submit") Login
-

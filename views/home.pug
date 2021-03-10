@@ -6,19 +6,33 @@ block append head
     link(rel='stylesheet' href='/stylesheets/homepage.css')
 
 block content
-
-    header
-        div.header
-            p header
-        div.main
-            p sdfiasdfiaasdf
-            p thisd sidf
-        div.sidebar
-            p sidebar
+    div.homepage
+        div.logo
+            a(href='/home')
         if user
-            p Welcome, #{user.name}!
-            a(href="/users/logout" role="button") Logout
+            div.welcome
+                p Welcome, #{user.name}!
+            div.logout
+                a(href="/users/logout" role="button") Logout
         else
-            a(href="/users/sign-up" role="button") Sign Up
-            br
-            a(href="/users/login" role="button") Login
+            div.logged-out
+                a(href="/users/sign-up" role="button") Sign Up
+                a(href="/users/login" role="button") Login
+        div.games-container
+            p Games
+            div.game1
+                p Game row 1
+            div.game2
+                p Game row 2
+            div.game3
+                p Game row 3
+            div.game4
+                p Game row 4
+        div.gameshelf
+            p Game Shelf
+            div.playing
+                p Playing shelf
+            div.played
+                p Played shelf
+            div.wishlist
+                p Wishlist shelf
