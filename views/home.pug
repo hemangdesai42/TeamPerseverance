@@ -19,15 +19,19 @@ block content
                 a(href="/users/sign-up" role="button") Sign Up
                 a(href="/users/login" role="button") Login
         div.games-container
-            p Games
-            div.game1
-                p Game row 1
-            div.game2
-                p Game row 2
-            div.game3
-                p Game row 3
-            div.game4
-                p Game row 4
+            each game in games
+                div.main__game
+                    img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+                    div= game.name
+            //- p Games
+            //- div.game1
+            //-     p Game row 1
+            //- div.game2
+            //-     p Game row 2
+            //- div.game3
+            //-     p Game row 3
+            //- div.game4
+            //-     p Game row 4
         div.gameshelf
             p Game Shelf
             div.playing
