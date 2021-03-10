@@ -29,7 +29,7 @@ html, body {
     font-size: 25px;
     padding: 0px 0px 0px 15px;
     color: green
-    
+
 }
 
 .logout {
@@ -41,13 +41,19 @@ html, body {
     padding: 0px 10px 0px 0px
 }
 
-/* .logo {
-    object-fit: cover;
-    padding: 10px 10px;
-    max-height: 25px;
-    max-width: 20px;
-    
-} */
+.logo {
+    grid-area: logo1;
+    /* object-fit: cover; */
+    /* padding: 10px 10px; */
+    /* max-height: 25px;
+    max-width: 20px; */
+    background-image: url('../images/console-game-logo.png');
+    background-position: center;
+    background-size: cover;
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
 
 
 .gameshelf {
@@ -57,8 +63,99 @@ html, body {
 
 }
 
-.games {
+
+.logged-out a {
+    display: flex;
+    max-width: 200px;
+    grid-area: h1;
+    font-size: 25px;
+    justify-content: space-around;
+    color: black;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: underline white;
+    background-color: white;
+}
+
+.logged-out a {
+    transition: all 0.2s ease-in-out;
+}
+
+.logged-out a:hover {
+    transform: scale(1.05)
+
+}
+
+.games-container {
+    display: grid;
     grid-area: main;
+    /* border: 1px solid white; */
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 5px;
+    grid-template-areas:
+    "header header header"
+    "game1 game1 game1"
+    "game2 game2 game2"
+    "game3 game3 game3"
+    "game4 game4 game4";
+}
+
+.games-container p {
+    grid-area: header;
     color: red;
     justify-self: center;
+}
+
+.game1 {
+    grid-area: game1
+}
+
+.game2 {
+    grid-area: game2
+}
+
+.game3 {
+    grid-area: game3
+}
+
+.game4 {
+    grid-area: game4
+}
+
+.game1, .game2, .game3, .game4 {
+    border: 1px solid white
+}
+
+
+.gameshelf {
+    display: grid;
+    grid-area: sidebar;
+    border: 1px solid white;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 5px;
+    grid-template-areas:
+    "header"
+    "playing"
+    "played"
+    "wishlist";
+}
+
+.playing {
+    grid-area: playing
+}
+
+.played {
+    grid-area: played;
+}
+
+.wishlist {
+    grid-area: wishlist
+}
+
+.playing, .played, .wishlist {
+    border: 1px solid white;
 }
