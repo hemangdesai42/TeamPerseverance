@@ -55,3 +55,20 @@ body {
 .game-reviews {
   grid-area: game-reviews;
 }
+
+.gameShelf__dropDown {
+  display: inline-block;
+  position: relative;
+}
+
+.gameShelf__dropDown:hover .gameShelf__dropDown-content {
+  display: block;
+}
+
+
+
+.gameShelf__dropDown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
