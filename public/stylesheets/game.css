@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'ROG';
+  src: url('../fonts/batmfa__.ttf');
+}
+
+body {
+  font-family: ROG;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+  "game-image game-info"
+  "game-options game-options"
+  "game-reviews game-reviews";
+  margin: 0 200px;
+}
+
+.game-image {
+  grid-area: game-image;
+  justify-self: center;
+}
+
+.game-info {
+  grid-area: game-info;
+}
+
+.game-options {
+  grid-area: game-options;
+}
+
+.game-reviews {
+  grid-area: game-reviews;
+}
