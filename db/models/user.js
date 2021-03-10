@@ -23,10 +23,33 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT
     },
   }, {});
+
+  const gameShelfMapping = {
+    through: 'GameShelf', // This is the model name referencing the join table.
+    otherKey: 'gameId',
+    foreignKey: 'userId'
+  }
+
+  const reviewMapping = {
+    through: 'Review',
+    otherKey: 'gameId',
+    foreignKey: 'userId'
+  }
+
+  const ratingMapping = {
+    through: 'Rating',
+    otherKey: 'gameId',
+    foreignKey: 'userId'
+  }
+
   User.associate = function(models) {
-    User.hasMany(models.GameShelf, { foreignKey: 'userId' })
-    User.hasMany(models.Review, { foreignKey: 'userId' })
-    User.hasMany(models.Rating, { foreignKey: 'userId' })
+    // User.hasMany(models.GameShelf, { foreignKey: 'userId' });
+    // User.hasMany(models.Review, { foreignKey: 'userId' });
+    // User.hasMany(models.Rating, { foreignKey: 'userId' });
+    User.belongsToMany(models.Game, gameShelfMapping);
+    User.belongsToMany(models.Game, reviewMapping);
+    User.belongsToMany(models.Game, ratingMapping);
   };
+
   return User;
 };
