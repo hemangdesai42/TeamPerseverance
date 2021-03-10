@@ -6,19 +6,16 @@ block append head
     link(rel='stylesheet' href='/stylesheets/homepage.css')
 
 block content
-
-    header
+    div.homepage
         div.header
-            p header
+            if user
+                p Welcome, #{user.name}!
+                a(href="/users/logout" role="button") Logout
+            else
+                a(href="/users/sign-up" role="button") Sign Up
+                a(href="/users/login" role="button") Login
         div.main
             p sdfiasdfiaasdf
             p thisd sidf
         div.sidebar
             p sidebar
-        if user
-            p Welcome, #{user.name}!
-            a(href="/users/logout" role="button") Logout
-        else
-            a(href="/users/sign-up" role="button") Sign Up
-            br
-            a(href="/users/login" role="button") Login
