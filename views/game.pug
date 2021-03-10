@@ -4,4 +4,20 @@ block append head
     link(rel='stylesheet' href='/stylesheets/game.css')
 
 block content
-    
+    div.game-container
+        div.game-image
+            img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+        div.game-info
+            div= game.name
+            div= game.genre
+            div= game.platform
+            div= game.releaseDate
+            div= game.description
+        div.game-options
+            if user & gameshelf
+                div= gameshelf.category
+            else if user
+                div= 'Add to GameShelf'
+            else
+                div= 'Not logged in'
+        div.game-reviews

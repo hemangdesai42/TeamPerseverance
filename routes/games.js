@@ -7,7 +7,14 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res)=> {
     const gameId = req.params.id;
     const game = await Game.findByPk(gameId);
 
-    res.render('game', { game, title: game.name });
+    let user;
+    let gameShelf;
+    if (res.locals.authenticated) {
+        user = res.locals.user;
+        gameShelf = await GameShelf.findAll({ where: { userId: user.id, gameId }})
+    }
+
+    res.render('game', { game, title: game.name, gameShelf });
 }));
 
 
