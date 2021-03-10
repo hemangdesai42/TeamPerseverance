@@ -94,6 +94,7 @@ html, body {
 }
 
 .games-container {
+    margin: 0 20px;
     display: grid;
     grid-area: main;
     /* border: 1px solid white; */
@@ -131,7 +132,10 @@ html, body {
 }
 
 .game1, .game2, .game3, .game4 {
-    border: 1px solid white
+    /* border: 1px solid white; */
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 
@@ -163,4 +167,19 @@ html, body {
 
 .playing, .played, .wishlist {
     border: 1px solid white;
+}
+
+.main__game {
+    margin: 15px;
+    color: white;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.main__game img {
+    border-radius: 5px;
+}
+
+.main__game:hover {
+    transform: scale(1.05);
 }
