@@ -16,7 +16,10 @@ router.get('/', asyncHandler( async (req, res) => {
     res.render('home', {user, title: "Homepage", games, gameShelf});
 }));
 
-
+router.get('/:id(\\d+)', (req, res) => {
+    const gameId = req.params.id
+    res.redirect(`/games/${gameId}`)
+})
 
 
 module.exports = router
