@@ -1,23 +1,64 @@
+@font-face {
+  font-family: 'ROG';
+  src: url('../fonts/batmfa__.ttf');
+}
+
 .homepage {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
+    gap: 5px;
     grid-template-areas:
-    "header header header header"
+    "h1 logo1 logo1 h4"
     "main main main sidebar"
     "footer footer footer footer";
 }
 
-.header {
-    grid-area: header;
-    background-color: orange;
+html, body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/wp8138620.jpeg');
+  background-size: cover;
+  font-family: ROG;
 }
 
-.sidebar{
+.welcome {
+    grid-area: h1;
+    font-size: 25px;
+    padding: 0px 0px 0px 15px;
+    color: green
+    
+}
+
+.logout {
+    grid-area: h4;
+    font-size: 25px;
+    align-self: start;
+    justify-self: end;
+    color: green;
+    padding: 0px 10px 0px 0px
+}
+
+/* .logo {
+    object-fit: cover;
+    padding: 10px 10px;
+    max-height: 25px;
+    max-width: 20px;
+    
+} */
+
+
+.gameshelf {
     grid-area: sidebar;
+    color: red;
+    justify-self: left;
+
 }
 
-.main {
+.games {
     grid-area: main;
-    background-color: grey;
+    color: red;
+    justify-self: center;
 }
