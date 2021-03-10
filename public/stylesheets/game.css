@@ -1,7 +1,4 @@
-@font-face {
-  font-family: 'ROG';
-  src: url('../fonts/batmfa__.ttf');
-}
+@import 'fonts.css';
 
 body {
   font-family: ROG;
@@ -21,10 +18,34 @@ body {
 .game-image {
   grid-area: game-image;
   justify-self: center;
+  position: relative;
+  height: 100%;
+}
+
+.game-image, .game-info {
+  margin: 40px 0;
 }
 
 .game-info {
   grid-area: game-info;
+  font-family: SC;
+}
+
+.game-info div {
+  margin-bottom: 10px;
+}
+
+.game-info span {
+  font-weight: bold;
+}
+
+.game-info p {
+  display: inline;
+}
+
+.game-info__name {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .game-options {

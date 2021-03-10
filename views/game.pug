@@ -8,11 +8,19 @@ block content
         div.game-image
             img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
         div.game-info
-            div= game.name
-            div= game.genre
-            div= game.platform
-            div= game.releaseDate
-            div= game.description
+            div.game-info__name= game.name
+            div
+                span Genre:
+                p  #{game.genre}
+            div
+                span Platform:
+                p  #{game.platform}
+            div
+                span Release Date:
+                p  #{game.releaseDate}
+            div
+                span Description:
+                p  #{game.description}
         div.game-options
             if user & gameshelf
                 div= gameshelf.category
@@ -21,4 +29,4 @@ block content
             else
                 div= 'Not logged in'
         div.game-reviews
-            p Reviews
+            include reviews

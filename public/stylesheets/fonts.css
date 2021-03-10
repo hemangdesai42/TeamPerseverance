@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'ROG';
+  src: url('../fonts/batmfa__.ttf');
+}
+
+@font-face {
+  font-family: 'SC';
+  src: url('../fonts/SourceCodePro-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'SC';
+  src: url('../fonts/SourceCodePro-Bold.ttf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'SC';
+  src: url('../fonts/SourceCodePro-Italic.ttf');
+  font-style: italic;
+}
