@@ -127,12 +127,12 @@ input, textarea {
   list-style-type: none;
 }
 
-.submit-container a {
-  /* color: */
+.submit-container {
+  transition: all 0.2s ease-in-out;
 }
 
 .submit-container a:hover {
-  /* color:  */
+  transform: scale(1.05)
 }
 
 .submit-container a:visited {
@@ -147,3 +147,13 @@ input, textarea {
   background-color: white;
   border-radius: 5px;
 }
+
+.demo-container {
+  transition: all 0.2s ease-in-out;
+}
+
+.demo-container:hover {
+  /* box-shadow: 5px 5px rgba(152, 140, 140, 0.7); */
+  transform: scale(1.05)
+}
+

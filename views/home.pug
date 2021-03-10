@@ -7,15 +7,16 @@ block append head
 
 block content
     div.homepage
-        div.header
-            if user
+        if user
+            div.welcome
                 p Welcome, #{user.name}!
+            div.logo
+            div.logout
                 a(href="/users/logout" role="button") Logout
-            else
-                a(href="/users/sign-up" role="button") Sign Up
-                a(href="/users/login" role="button") Login
-        div.main
-            p sdfiasdfiaasdf
-            p thisd sidf
-        div.sidebar
-            p sidebar
+        else
+            a(href="/users/sign-up" role="button") Sign Up
+            a(href="/users/login" role="button") Login
+        div.games
+            p Games
+        div.gameshelf
+            p Game Shelf
