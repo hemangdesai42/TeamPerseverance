@@ -1,0 +1,23 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "header header header header"
+    "main main main sidebar"
+    "footer footer footer footer";
+}
+
+.header {
+    grid-area: header;
+    background-color: orange;
+}
+
+.sidebar{
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+    background-color: black;
+}
