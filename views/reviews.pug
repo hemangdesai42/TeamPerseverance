@@ -1,0 +1,8 @@
+block append head
+  link(rel='stylesheet' href='/stylesheets/reviews.css')
+
+div.reviews__text
+  form(action='' method='post')
+    label(for='user-review')= user.name
+    textarea(name='user-review' placeholder='Leave a review...')
+    button(type='submit') Submit Review

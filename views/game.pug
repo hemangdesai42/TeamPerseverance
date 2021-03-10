@@ -1,0 +1,38 @@
+extends layout
+
+block append head
+    link(rel='stylesheet' href='/stylesheets/game.css')
+
+block content
+    div.game-container
+        div.game-image
+            img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+        div.game-info
+            div.game-info__name= game.name
+            div
+                span Genre:
+                p  #{game.genre}
+            div
+                span Platform:
+                p  #{game.platform}
+            div
+                span Release Date:
+                p  #{game.releaseDate}
+            div
+                span Description:
+                p  #{game.description}
+        div.game-options
+            if user & gameshelf
+                div= gameshelf.category
+                    //- each shelf in gameshelf.category
+            else if user
+                div.gameShelf__dropDown
+                    button.gameShelf__dropDown-btn= "Add to gameshelf"
+                    div.gameShelf__dropDown-content
+                        a(href='')= "Add to Played"
+                        a(href='')= "Add to Playing"
+                        a(href='')= "Add to Wishlist"
+            else
+                div= 'Login to add to gameshelf'
+        div.game-reviews
+            include reviews

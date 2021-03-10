@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   GameShelf.associate = function(models) {
-    GameShelf.belongsTo(models.User, { foreignKey: 'userId' })
-    GameShelf.belongsTo(models.Game, { foreignKey: 'gameId' })
+    // GameShelf.belongsTo(models.User, { foreignKey: 'userId' })
+    // GameShelf.belongsTo(models.Game, { foreignKey: 'gameId' })
   };
   return GameShelf;
 };
