@@ -1,17 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../db/models')
-const { csrfProtection, asyncHandler } = require('./utils');
+const { User, GameShelf, Game } = require('../db/models');
+const { asyncHandler } = require('./utils');
 
-
-router.get('/', (req, res) => {
+router.get('/', asyncHandler( async (req, res) => {
     let user;
-    if ( res.locals.authenticated) {
-        user = res.locals.user
+    let gameShelf;
+    if ( res.locals.authenticated ) {
+        user = res.locals.user;
+        gameShelf = await GameShelf.findAll({ where: { userId: user.id }});
     }
-    console.log(user);
 
-    res.render('home', {user, title: "Homepage"})
-})
+    const games = await Game.findAll();
+
+    res.render('home', {user, title: "Homepage", games, gameShelf});
+}));
+
+
+
 
 module.exports = router
