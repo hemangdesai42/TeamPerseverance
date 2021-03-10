@@ -19,15 +19,39 @@ block content
                 a(href="/users/sign-up" role="button") Sign Up
                 a(href="/users/login" role="button") Login
         div.games-container
+            //- each game in games
+            //-     div.main__game
+            //-         img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+            //-         div= game.name
             p Games
             div.game1
-                p Game row 1
+                - var n = 0;
+                while n < 10
+                    div.main__game
+                        img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+                        div= games[n].name
+                        - n++
             div.game2
-                p Game row 2
+                - var n = 10;
+                while n < 20
+                    div.main__game
+                        img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+                        div= games[n].name
+                        - n++
             div.game3
-                p Game row 3
+                - var n = 20;
+                while n < 30
+                    div.main__game
+                        img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+                        div= games[n].name
+                        - n++
             div.game4
-                p Game row 4
+                - var n = 30;
+                while n < 40
+                    div.main__game
+                        img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+                        div= games[n].name
+                        - n++
         div.gameshelf
             p Game Shelf
             div.playing
