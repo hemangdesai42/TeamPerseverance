@@ -34,12 +34,11 @@ block content
                 div.submit-container
                     button(type="submit") Sign Up
                     a(href="/users/login") Registered?
+                div 
+                    a(href="/demo-user" role="button") Demo User
     if errors
         div#errors-container
             h1 Placeholder
             ul
                 each error in errors
                     li= error
-
-
-//-- add placeholder text to each field
