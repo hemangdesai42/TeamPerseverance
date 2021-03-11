@@ -17,8 +17,37 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res)=> {
     res.render('game', { game, title: game.name, gameShelf });
 }));
 
+const addToGameShelf = async function(gameId, userId, category) {
+    await GameShelf.create({ gameId, userId, category})
 
+    res.redirect(`/games/${gameId}`)
+}
 
+router.get('/:id(\\d+)/played', asyncHandler(async (req, res) => {
+    const gameId = req.params.id; 
+    if (res.locals.authenticated) {
+        const user = res.locals.user;
+        return await addToGameShelf(gameId, user.id, "Played")
+    } 
+    res.redirect(`/games/${gameId}`)
+}));
 
+router.get('/:id(\\d+)/playing', asyncHandler(async (req, res) => {
+    const gameId = req.params.id;
+    if (res.locals.authenticated) {
+        const user = res.locals.user;
+        return await addToGameShelf(gameId, user.id, "Playing")
+    }
+    res.redirect(`/games/${gameId}`)
+}));
+
+router.get('/:id(\\d+)/wishlist', asyncHandler(async (req, res) => {
+    const gameId = req.params.id;
+    if (res.locals.authenticated) {
+        const user = res.locals.user;
+        return await addToGameShelf(gameId, user.id, "Wishlist")
+    }
+    res.redirect(`/games/${gameId}`)
+}));
 
 module.exports = router
