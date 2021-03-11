@@ -11,6 +11,9 @@ const usersRouter = require('./routes/users');
 const homeRouter = require('./routes/home');
 const gameRouter = require('./routes/games');
 const demoRouter = require('./routes/demo-user');
+const reviewRouter = require('./routes/api/reviews')
+const ratingRouter = require('./routes/api/ratings')
+
 const { config } = require('./config')
 const { restoreUser } = require('./auth');
 const app = express();
@@ -45,6 +48,8 @@ app.use('/users', usersRouter);
 app.use('/home', homeRouter);
 app.use('/games', gameRouter);
 app.use('/demo-user', demoRouter);
+app.use('/api/games', reviewRouter);
+app.use('/api/games', ratingRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -55,6 +60,8 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  console.log(err);
 
   // render the error page
   res.status(err.status || 500);
