@@ -29,9 +29,9 @@ block content
                 div.gameShelf__dropDown
                     button.gameShelf__dropDown-btn= "Add to gameshelf"
                     div.gameShelf__dropDown-content
-                        a(href='/games/#{game.id}/played') Add to Played
-                        a(href='/games/#{game.id}/playing') Add to Playing
-                        a(href='/games/#{game.id}/wishlist') Add to Wishlist
+                        a(href='/games/' + game.id + '/played') Add to Played
+                        a(href='/games/' + game.id + '/playing') Add to Playing
+                        a(href='/games/' + game.id + '/wishlist') Add to Wishlist
             else
                 div= 'Login to add to gameshelf'
         div.game-reviews
