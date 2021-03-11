@@ -111,7 +111,8 @@ html, body {
 
 .games-container p {
     grid-area: header;
-    color: red;
+    color: white;
+    font-size: 25px;
     justify-self: center;
 }
 
@@ -144,7 +145,7 @@ html, body {
     grid-area: sidebar;
     border: 1px solid white;
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 0.5fr 3fr 3fr 3fr;
     gap: 5px;
     grid-template-areas:
     "header"
@@ -152,6 +153,8 @@ html, body {
     "played"
     "wishlist";
 }
+
+
 
 .playing {
     grid-area: playing
@@ -182,4 +185,31 @@ html, body {
 
 .main__game:hover {
     transform: scale(1.05);
+}
+
+.gameshelf-no {
+    display: grid;
+    grid-area: sidebar;
+    color: white;
+    border: 1px solid white;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 5px;
+    grid-template-areas:
+    "header"
+    "playing"
+    "played"
+    "wishlist";
+}
+
+.playing {
+    grid-area: playing
+}
+
+.played {
+    grid-area: played;
+}
+
+.wishlist {
+    grid-area: wishlist
 }

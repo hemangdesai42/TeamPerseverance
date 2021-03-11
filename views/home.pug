@@ -52,11 +52,27 @@ block content
                         img(src=src=games[n].image)
                         div= games[n].name
                         - n++
-        div.gameshelf
-            p Game Shelf
-            div.playing
-                p Playing shelf
-            div.played
-                p Played shelf
-            div.wishlist
-                p Wishlist shelf
+        if user
+            div.gameshelf
+                p Game Shelf
+                div.playing
+                    p Playing shelf
+                    each game in gameShelf
+                        if game.category === "Playing"
+                div.played
+                    p Played shelf
+                    each game in gameShelf
+                        if game.category === "Played"
+                div.wishlist
+                    p Wishlist shelf
+                    each game in gameShelf
+                        if game.category === "Wishlist"
+        else 
+            div.gameshelf-no
+                p Create an Account to start adding to your Game Shelf!
+                div.playing
+                    p Playing shelf
+                div.played
+                    p Played shelf
+                div.wishlist
+                    p Wishlist shelf
