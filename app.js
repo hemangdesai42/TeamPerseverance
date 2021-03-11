@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 const homeRouter = require('./routes/home');
 const gameRouter = require('./routes/games');
 const demoRouter = require('./routes/demo-user');
+const reviewRouter = require('./routes/api/reviews')
 const { config } = require('./config')
 const { restoreUser } = require('./auth');
 const app = express();
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/home', homeRouter);
 app.use('/games', gameRouter);
 app.use('/demo-user', demoRouter);
+app.use('/api/games', reviewRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
