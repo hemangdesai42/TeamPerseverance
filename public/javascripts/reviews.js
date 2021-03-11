@@ -23,4 +23,30 @@ document.addEventListener('DOMContentLoaded', async (e) => {
       console.log(e);
     }
   });
+
+  const reviewEdit = document.getElementById('review-edit')
+  const reviewDelete = document.getElementById('review-delete')
+  const gameId = document.getElementById('reviewForm__gameId').value
+
+  reviewEdit.addEventListener('click', async e => {
+    const reviewId = reviewEdit.classList[0]
+
+  })
+
+  reviewDelete.addEventListener('click', async e => {
+    const reviewId = reviewDelete.previousSibling.previousSibling.value
+    try {
+      const res = await fetch(`/api/games/${gameId}/reviews/${reviewId}`, { method: 'DELETE'})
+      if (res.ok) {
+        const reviewDiv = reviewDelete.parentNode
+        reviewDiv.parentNode.removeChild(reviewDiv)
+
+      } else {
+        window.alert('Comment could not be deleted')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  })
+
 });

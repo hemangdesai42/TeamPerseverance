@@ -6,7 +6,7 @@ const { asyncHandler } = require('./utils');
 router.get('/:id(\\d+)', asyncHandler( async (req, res)=> {
     const gameId = req.params.id;
     const game = await Game.findByPk(gameId);
-    const reviews = await Review.findAll({ where: { gameId }, include: [{ model:User, attributes: ['userName'] }]});
+    const reviews = await Review.findAll({ where: { gameId },  attributes: ['id', 'review', 'userId', 'gameId', 'createdAt'], include: [{ model:User, attributes: ['userName'] }]});
     const ratings = await Rating.findAll({ where: { gameId }});
 
     let user;
@@ -52,5 +52,8 @@ router.get('/:id(\\d+)/wishlist', asyncHandler(async (req, res) => {
     }
     res.redirect(`/games/${gameId}`)
 }));
+
+
+
 
 module.exports = router

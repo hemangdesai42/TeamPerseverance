@@ -14,3 +14,7 @@ div.review__list
       p= review.User.userName
       p= review.createdAt
       p= review.review
+      if review.User.userName = user.userName
+        input(type='hidden' value=review.id name='reviewId')
+        button#review-edit Edit
+        button#review-delete Delete
