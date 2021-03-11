@@ -3,7 +3,10 @@ block append head
 
 div.reviews__text
   if user
-    form(action='/api/games/' + game.id + '/reviews' method='post')
+    form(id='reviewForm' action='/api/games/' + game.id + '/reviews' method='post')
+      input(type='hidden' name='gameId' value=game.id)
       label(for='userReview')= user.name
       textarea(name='userReview' placeholder='Leave a review...')
       button(type='submit') Submit Review
+
+      //- /api/games/' + game.id + '/reviews
