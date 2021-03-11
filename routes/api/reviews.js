@@ -47,8 +47,9 @@ router.delete('/:gameId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async(req, 
 
     const userId = res.locals.user.id
     const reviewId = req.params.reviewId
-    let userReview = await Review.findByPk(reviewId)
-
+    // let userReview = await Review.findByPk(reviewId)
+    let userReview = await Review.findOne({ where: {userId, gameId: req.params.gameId}})
+    console.log(reviewId)
     if (userReview.userId !== userId) {
         return res.status(403).end()
     }

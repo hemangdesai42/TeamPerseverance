@@ -1,5 +1,16 @@
 extends layout
 
+mixin avgRating(ratings)
+    if ratings.length
+        - var sum = 0
+        each rating in ratings
+            - sum = sum + rating.rating
+        - var avg = sum / ratings.length
+        span= avg
+    else
+        span No ratings yet
+
+
 block append head
     link(rel='stylesheet' href='/stylesheets/game.css')
     script(src='/javascripts/reviews.js')
@@ -18,7 +29,8 @@ block content
                     option(value=4) 4
                     option(value=5) 5
                 button#ratingBtn Submit
-
+            div.avgRating
+                +avgRating(ratings)
         div.game-info
             div.game-info__name= game.name
             div
