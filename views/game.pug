@@ -1,12 +1,36 @@
 extends layout
 
+mixin avgRating(ratings)
+    if ratings.length
+        - var sum = 0
+        each rating in ratings
+            - sum = sum + rating.rating
+        - var avg = sum / ratings.length
+        span= avg
+    else
+        span No ratings yet
+
+
 block append head
     link(rel='stylesheet' href='/stylesheets/game.css')
+    script(src='/javascripts/reviews.js')
+    script(src='/javascripts/ratings.js')
 
 block content
     div.game-container
         div.game-image
             img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
+            div.ratingDiv
+                select#ratingSelect (name="rating")
+                    option(value=null) Rating
+                    option(value=1) 1
+                    option(value=2) 2
+                    option(value=3) 3
+                    option(value=4) 4
+                    option(value=5) 5
+                button#ratingBtn Submit
+            div.avgRating
+                +avgRating(ratings)
         div.game-info
             div.game-info__name= game.name
             div
