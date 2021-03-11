@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING(100)
     },
+    image: {
+      allowNull: false,
+      type: DataTypes.STRING(200)
+    },
   }, {});
 
   const gameShelfMapping = {
