@@ -29,7 +29,7 @@ router.put('/:gameId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async(req, res
     const userId = res.locals.user.id
     const gameId = req.params.gameId
     const reviewId = req.params.reviewId
-    const review = req.body.user-review
+    const review = req.body.userReview
     let userReview = await Review.findByPk(reviewId)
 
     if (userReview.userId !== userId) {
@@ -46,7 +46,6 @@ router.delete('/:gameId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async(req, 
     }
 
     const userId = res.locals.user.id
-    const gameId = req.params.gameId
     const reviewId = req.params.reviewId
     let userReview = await Review.findByPk(reviewId)
 
@@ -55,6 +54,6 @@ router.delete('/:gameId(\\d+)/reviews/:reviewId(\\d+)', asyncHandler(async(req, 
     }
     await userReview.destroy()
     res.status(204).end()
-}))
+}));
 
 module.exports = router
