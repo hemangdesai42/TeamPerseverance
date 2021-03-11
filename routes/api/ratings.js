@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../../db/models')
-const { csrfProtection, asyncHandler } = require('../utils');
+const { User, Rating } = require('../../db/models')
+const { asyncHandler } = require('../utils');
 
 let avgRating = function(ratings) {
     return ratings.reduce(function(acc, rating) {
@@ -13,25 +13,25 @@ let avgRating = function(ratings) {
 
 router.get('/:id(\\d+)/ratings', asyncHandler(async (req, res, next) => {
     const ratings = await Rating.findAll({ where: { gameId: req.params.id } })
-    
+
     if (!ratings) {
         return res.json({ ratings: false })
     }
     res.json({ ratings: true, avg: avgRating(ratings) })
 }));
 
-router.post('/:id(\\d+)/ratings/', asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/ratings', asyncHandler(async (req, res, next) => {
     if (!res.locals.authenticated) {
         return res.status(403).end()
     }
-    
+
     const userId = res.locals.user.id
     const gameId = req.params.id
-    
+
     if (await Rating.findOne({ where: { gameId, userId }})) {
         return res.status(403).end()
     }
-    const rating = req.body.userRating
+    const rating = req.body.userRating;
     await Rating.create({ userId, gameId, rating })
     const ratings = await Rating.findAll({ where: { gameId: req.params.id } })
     return res.json({ ratings: true, avg: avgRating(ratings)});
@@ -82,7 +82,7 @@ router.delete('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req,
         return res.json({ ratings: false })
     }
     res.json({ ratings: true, avg: avgRating(ratings) })
-    
+
 }));
 
 module.exports = router;

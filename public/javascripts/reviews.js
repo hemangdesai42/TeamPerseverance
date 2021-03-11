@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         // Display review on the page
         console.log('Review successfully submitted');
       } else {
-        throw Error();
+        throw res;
       }
     } catch (e) {
       console.log(e);

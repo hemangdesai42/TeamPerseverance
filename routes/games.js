@@ -6,6 +6,8 @@ const { asyncHandler } = require('./utils');
 router.get('/:id(\\d+)', asyncHandler( async (req, res)=> {
     const gameId = req.params.id;
     const game = await Game.findByPk(gameId);
+    const reviews = await Review.findAll({ where: { gameId }, include: [{ model:User, attributes: ['userName'] }]});
+    const ratings = await Rating.findAll({ where: { gameId }});
 
     let user;
     let gameShelf;
@@ -14,8 +16,8 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res)=> {
         console.log(user)
         gameShelf = await GameShelf.findAll({ where: { userId: user.id, gameId }})
     }
-
-    res.render('game', { game, title: Game.name, gameShelf, user });
+    console.log('reviews');
+    res.render('game', { game, title: Game.name, gameShelf, user, reviews, ratings });
 }));
 
 const addToGameShelf = async function(gameId, userId, category, res) {
