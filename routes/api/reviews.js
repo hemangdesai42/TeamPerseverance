@@ -17,6 +17,7 @@ router.post('/:id(\\d+)/reviews', asyncHandler(async(req, res, next) => {
     const gameId = req.params.id
     const review = req.body.userReview
     const userReview = await Review.create({userId, gameId, review})
+    console.log(userId, gameId, review);
     return res.json({userReview})
 }))
 
