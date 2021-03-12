@@ -12,12 +12,42 @@ mixin avgRating(ratings)
         each rating in ratings
             - sum = sum + rating.rating
         - var avg = sum / ratings.length
-        span#game-rating= avg
+        span#game-rating= 'RATING: ' + avg
     else
-        span#game-rating No ratings yet
+        span#game-rating NOT RATED
 
 block content
     div.game-container
+        div.logo
+            a(href='/home')
+                img(src='../images/console-game-logo.png')
+        if user
+            div.welcome
+                p Welcome, #{user.name}!
+            div.logout
+                a(href="/users/logout" role="button") Logout
+        else
+            div.logged-out
+                a(href="/users/sign-up" role="button") Sign Up
+                a(href="/users/login" role="button") Login
+        div.game-options
+            if user & gameshelf
+                div= gameshelf.category
+                    //- each shelf in gameshelf.category
+            else if user
+                div.gameShelf__dropDown
+                    button.gameShelf__dropDown-btn= "Add to gameshelf"
+                    div.gameShelf__dropDown-content
+                        button#add-played Add to Played
+                        button#add-playing  Add to Playing
+                        button#add-wishlist Add to Wishlist
+
+
+                        //- a(href='/games/' + game.id + '/played') Add to Played
+                        //- a(href='/games/' + game.id + '/playing') Add to Playing
+                        //- a(href='/games/' + game.id + '/wishlist') Add to Wishlist
+            else
+                div= 'Login to add to gameshelf'
         div.game-image
             img(src=game.image)
             div.ratingDiv

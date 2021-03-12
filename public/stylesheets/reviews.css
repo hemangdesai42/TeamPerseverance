@@ -11,8 +11,25 @@ textarea {
   height: 6rem;
   resize: none;
   font-family: SC;
+  background-color: black;
+  color: white;
 }
 
 button {
   font-family: ROG;
+  background-color: rgb(105, 105, 105);
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.review__list {
+  color: whitesmoke;
+  font-family: SC;
+}
+
+.review-name {
+  font-family: ROG;
+}
+
+.reviews__text {
+  color: white;
 }
