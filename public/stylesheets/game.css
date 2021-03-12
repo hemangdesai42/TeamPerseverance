@@ -76,3 +76,7 @@ body {
 .review-button-visible {
   display: none;
 }
+
+.rating-button-visible {
+  display: none;
+}

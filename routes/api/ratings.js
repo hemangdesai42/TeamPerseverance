@@ -32,9 +32,9 @@ router.post('/:id(\\d+)/ratings', asyncHandler(async (req, res, next) => {
         return res.status(403).end()
     }
     const rating = req.body.userRating;
-    await Rating.create({ userId, gameId, rating })
+    const userRating = await Rating.create({ userId, gameId, rating })
     const ratings = await Rating.findAll({ where: { gameId: req.params.id } })
-    return res.json({ ratings: true, avg: avgRating(ratings)});
+    return res.json({ ratings: true, avg: avgRating(ratings), userRating});
 }));
 
 router.put('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req, res, next) => {
@@ -47,8 +47,7 @@ router.put('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req, re
 
     const ratingId = req.params.ratingId
     const rating = req.body.userRating
-
-    let userRating = await Rating.findByPk(ratingId);
+    let userRating = await Rating.findOne({where: {id: ratingId}});
 
     if (userRating.userId !== userId) {
         return res.status(403).end()
@@ -57,8 +56,7 @@ router.put('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req, re
     userRating.rating = rating;
     await userRating.update();
     const ratings = await Rating.findAll({ where: { gameId: req.params.id } })
-    return res.json({ ratings: true, avg: avgRating(ratings) });
-
+    return res.json({ ratings: true, avg: avgRating(ratings), userRating });
 }));
 
 router.delete('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req, res, next) => {
