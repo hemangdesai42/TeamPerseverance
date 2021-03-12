@@ -5,6 +5,7 @@ block append head
     script(src='/javascripts/reviews.js')
     script(src='/javascripts/ratings.js')
     script(src='/javascripts/gameshelf.js' type='module')
+    script(src='/javascripts/game.js' type='module')
 
 mixin avgRating(ratings)
     if ratings.length
@@ -12,7 +13,7 @@ mixin avgRating(ratings)
         each rating in ratings
             - sum = sum + rating.rating
         - var avg = sum / ratings.length
-        span#game-rating= 'RATING: ' + avg
+        span#game-rating= 'AVERAGE RATING: ' + avg
     else
         span#game-rating NOT RATED
 
