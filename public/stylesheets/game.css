@@ -2,33 +2,95 @@
 
 body {
   font-family: ROG;
+  background-image: url('../images/wp8138620.jpeg');
+  background-size: cover;
 }
 
 .game-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
+  gap: 0 4rem;
   grid-template-areas:
-  "game-image game-info"
-  "game-options game-options"
-  "game-reviews game-reviews";
-  margin: 0 200px;
+  "h1 logo1 logo1 h4"
+  "game-image game-image game-info game-info"
+  "game-options game-options game-options game-options"
+  "game-reviews game-reviews game-reviews game-reviews";
+}
+
+.welcome {
+  grid-area: h1;
+  font-size: 1rem;
+  padding: 15px 0px 0px 15px;
+  color: green
+}
+
+.logout {
+  grid-area: h4;
+  font-size: 25px;
+  align-self: start;
+  justify-self: end;
+  color: green;
+  padding: 15px 10px 0px 0px
+}
+
+
+.logo {
+  grid-area: logo1;
+  margin: auto;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 30%;
+  padding: 1rem;
+}
+
+
+.logged-out a {
+  display: flex;
+  max-width: 200px;
+  grid-area: h1;
+  font-size: 25px;
+  justify-content: space-around;
+  color: black;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+  text-decoration: underline white;
+  background-color: white;
+}
+
+.logged-out a {
+  transition: all 0.2s ease-in-out;
+}
+
+.logged-out a:hover {
+  transform: scale(1.05)
+
 }
 
 .game-image {
   grid-area: game-image;
-  justify-self: center;
+  justify-self: right;
   position: relative;
   height: 100%;
 }
 
 .game-image, .game-info {
-  margin: 40px 0;
+  margin-top: 40px;
 }
 
 .game-info {
   grid-area: game-info;
-  font-family: SC;
+  font-family:Arial, Helvetica, sans-serif;
+  color:rgb(214, 214, 214);
+  justify-self: left;
+  margin-right: 20rem;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  line-height: 120%;
 }
 
 .game-info div {
@@ -37,19 +99,29 @@ body {
 
 .game-info span {
   font-weight: bold;
+  font-style: oblique;
+  font-size: 110%;
+  color:white;
 }
 
 .game-info p {
   display: inline;
+  font-size: small;
 }
 
 .game-info__name {
   font-weight: bold;
   font-size: 1.2rem;
+  color: white;
+  padding: 4px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .game-options {
-  grid-area: game-options;
+  grid-area: game-image;
+  justify-self: right;
+  margin-right: 1rem;
+  margin-top: 1rem;
 }
 
 .game-reviews {
@@ -59,13 +131,32 @@ body {
 .gameShelf__dropDown {
   display: inline-block;
   position: relative;
+  margin-right: 2rem;
 }
 
 .gameShelf__dropDown:hover .gameShelf__dropDown-content {
   display: block;
 }
 
+.gameShelf__dropDown-btn, #add-played, #add-playing, #add-wishlist, #ratingBtn {
+  background-color: rgb(105, 105, 105);
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
 
+.ratingDiv {
+  grid-area: game-image;
+  align-self: flex-end;
+  margin-bottom: 4rem;
+  margin-right: 2rem;
+}
+
+.avgRating {
+  grid-area: game-image;
+  color: white;
+  align-self: flex-end;
+  margin-bottom: 2rem;
+  margin-left: 10rem;
+}
 
 .gameShelf__dropDown-content {
   display: none;
@@ -76,3 +167,5 @@ body {
 .review-button-visible {
   display: none;
 }
+
+
