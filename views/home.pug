@@ -4,12 +4,18 @@ block append head
     //- style
     //-     include stylesheets/homepage.css
     link(rel='stylesheet' href='/stylesheets/homepage.css')
+    script(src='/javascripts/searchBar.js' type='module')
 
 block content
     div.homepage
         div.logo
             a(href='/home')
+        div.navBar__searchBarDiv
+                input#searchBar(name='searchBar' type='text')
         if user
+            div.navBar__searchBarDiv
+                p asdfasdigjaisdgjaisdgj
+                input(name='searchBar')
             div.welcome
                 p Welcome, #{user.name}!
             div.logout
