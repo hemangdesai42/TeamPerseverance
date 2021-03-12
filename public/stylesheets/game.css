@@ -168,4 +168,6 @@ body {
   display: none;
 }
 
-
+.rating-button-visible {
+  display: none;
+}
