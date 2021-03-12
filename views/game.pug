@@ -1,35 +1,41 @@
 extends layout
 
-mixin avgRating(ratings)
-    if ratings.length
-        - var sum = 0
-        each rating in ratings
-            - sum = sum + rating.rating
-        - var avg = sum / ratings.length
-        span= avg
-    else
-        span No ratings yet
-
-
 block append head
     link(rel='stylesheet' href='/stylesheets/game.css')
     script(src='/javascripts/reviews.js')
     script(src='/javascripts/ratings.js')
     script(src='/javascripts/gameshelf.js' type='module')
 
+mixin avgRating(ratings)
+    if ratings.length
+        - var sum = 0
+        each rating in ratings
+            - sum = sum + rating.rating
+        - var avg = sum / ratings.length
+        span#game-rating= avg
+    else
+        span#game-rating No ratings yet
+
 block content
     div.game-container
         div.game-image
             img(src=game.image)
             div.ratingDiv
-                select#ratingSelect (name="rating")
-                    option(value=null) Rating
+                if userRating
+                    input#user-rated(type='hidden' value=userRating.rating name='user-rating')
+                    input#user-rated-id(type='hidden' value=userRating.id name='user-rating-id')
+                select#ratingSelect(name="rating")
+                    if userRating
+                        option#opt-1(value='delete') Delete My Rating
+                    else
+                        option#opt-1(value=null) Rating
                     option(value=1) 1
                     option(value=2) 2
                     option(value=3) 3
                     option(value=4) 4
                     option(value=5) 5
-                button#ratingBtn Submit
+                button#ratingEdit Edit My Rating
+                button#ratingBtn Submit My Rating
             div.avgRating
                 +avgRating(ratings)
         div.game-info
@@ -47,21 +53,30 @@ block content
                 span Description:
                 p  #{game.description}
         div.game-options
-            if user & gameshelf
-                div= gameshelf.category
-                    //- each shelf in gameshelf.category
-            else if user
-                div.gameShelf__dropDown
-                    button.gameShelf__dropDown-btn= "Add to gameshelf"
-                    div.gameShelf__dropDown-content
-                        button#add-played Add to Played
-                        button#add-playing  Add to Playing
-                        button#add-wishlist Add to Wishlist
-
-
-                        //- a(href='/games/' + game.id + '/played') Add to Played
-                        //- a(href='/games/' + game.id + '/playing') Add to Playing
-                        //- a(href='/games/' + game.id + '/wishlist') Add to Wishlist
+            if user
+                if gameshelf
+                    div.gameShelf__dropDown
+                        button.gameShelf__dropDown-btn Game is in #{gameshelf.category}
+                        div.gameShelf__dropDown-content
+                            if gameshelf.category === 'Played'
+                                button#remove-played Remove from Played
+                                button#move-playing  Move to Playing
+                                button#move-wishlist Move to Wishlist
+                            if gameshelf.category === 'Playing'
+                                button#move-played Move to Played
+                                button#remove-playing  Remove from Played
+                                button#move-wishlist Move to Wishlist
+                            if gameshelf.category === 'Wishlist'
+                                button#move-played Move to Played
+                                button#move-playing  Move to Playing
+                                button#remove-wishlist Remove from Wishlist
+                else
+                    div.gameShelf__dropDown
+                        button.gameShelf__dropDown-btn= "Add to gameshelf"
+                        div.gameShelf__dropDown-content
+                            button#add-played Add to Played
+                            button#add-playing  Add to Playing
+                            button#add-wishlist Add to Wishlist
             else
                 div= 'Login to add to gameshelf'
         div.game-reviews
