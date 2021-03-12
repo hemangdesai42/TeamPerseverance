@@ -47,9 +47,7 @@ async function editRating(button, userReview) {
         const selectEl = document.getElementById('ratingSelect');
         const userRating = document.getElementById('user-rated').value;
         const ratingId = document.getElementById('user-rated-id').value;
-        if (selectEl.value === userRating) {
-            return; // No change in user rating.
-        } else if (selectEl.value === 'delete') {
+        if (selectEl.value === 'delete') {
             try {
                 const res = await fetch(`/api/games/${gameId}/ratings/${ratingId}`,
                 {
@@ -65,7 +63,7 @@ async function editRating(button, userReview) {
                     ratingOpt.value = null;
                     ratingOpt.innerText = 'Rating';
                     ratingOpt.selected = 'selected';
-                    const ratingBtn = document.getElementById('ratingEdit');
+                    const ratingBtn = document.getElementById('ratingBtn');
                     const ratingEditBtn = document.getElementById('ratingEdit');
                     ratingBtn.classList.toggle('rating-button-visible');
                     ratingEditBtn.classList.toggle('rating-button-visible');
