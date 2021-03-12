@@ -1,3 +1,65 @@
+let ORIGINAL_REVIEW;
+
+const attachDeleteListener = element => {
+  const gameId = document.getElementById('reviewForm__gameId').value
+  element.addEventListener('click', async e => {
+    const reviewId = element.previousSibling.previousSibling.value
+    try {
+      const res = await fetch(`/api/games/${gameId}/reviews/${reviewId}`, { method: 'DELETE'})
+      if (res.ok) {
+        const reviewDiv = element.parentNode
+        reviewDiv.parentNode.removeChild(reviewDiv)
+      } else {
+        window.alert('Comment could not be deleted')
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  })
+}
+
+const attachEditListener = element => {
+  const gameId = document.getElementById('reviewForm__gameId').value
+  element.addEventListener('click', e => {
+    const reviewElement = element.previousSibling.previousSibling;
+    const reviewText = reviewElement.innerText;
+    const reviewContainer = reviewElement.parentNode;
+    reviewContainer.removeChild(reviewElement);
+    const textarea = document.createElement('textarea');
+    textarea.value = reviewText;
+    ORIGINAL_REVIEW = reviewText;
+    reviewContainer.insertBefore(textarea, element.previousSibling);
+    element.classList.toggle('review-button-visible');
+    element.nextSibling.classList.toggle('review-button-visible');
+    const cancelEdit = element.nextSibling.nextSibling;
+    cancelEdit.classList.toggle('review-button-visible');
+    const submitEdit = cancelEdit.nextSibling;
+    submitEdit.classList.toggle('review-button-visible');
+  })
+}
+
+const attachCancelListener = element => {
+  element.addEventListener('click', e => {
+    const gameId = document.getElementById('reviewForm__gameId').value
+    const reviewElement = element.previousSibling.previousSibling.previousSibling.previousSibling;
+    const reviewContainer = element.parentNode;
+    const inputElement = reviewElement.nextSibling;
+    reviewContainer.removeChild(reviewElement);
+    const reviewParagraph = document.createElement('p');
+    reviewParagraph.innerText = ORIGINAL_REVIEW;
+    reviewContainer.insertBefore(reviewParagraph, inputElement);
+    inputElement.nextSibling.classList.toggle('review-button-visible');
+    inputElement.nextSibling.nextSibling.classList.toggle('review-button-visible');
+    element.classList.toggle('review-button-visible');
+    element.nextSibling.classList.toggle('review-button-visible');
+  })
+}
+
+const attachSubmitListener = element => {
+  const gameId = document.getElementById('reviewForm__gameId').value
+
+}
+
 document.addEventListener('DOMContentLoaded', async (e) => {
   const reviewForm = document.getElementById('reviewForm');
   reviewForm.addEventListener('submit', async (e) => {
@@ -14,8 +76,48 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         body: JSON.stringify({ userReview: review })
       });
       if (res.ok) {
-        // Display review on the page
-        console.log('Review successfully submitted');
+        const json = await res.json();
+        const review = json.userReview;
+        document.querySelector('#reviewForm textarea').value = '';
+        const reviewList = document.querySelector('.review__list');
+        const reviewContainer = document.createElement('div');
+        const userName = document.createElement('p');
+        userName.innerText = json.userName;
+        const createdAt = document.createElement('p');
+        createdAt.innerText = review.createdAt;
+        const reviewText = document.createElement('p');
+        reviewText.innerText = review.review;
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'reviewId';
+        hiddenInput.value = review.id;
+        const editButton = document.createElement('button');
+        editButton.id = 'review-edit';
+        editButton.innerText = 'Edit';
+        const deleteButton = document.createElement('button');
+        deleteButton.id = 'review-delete';
+        deleteButton.innerText = 'Delete';
+        const cancelButton = document.createElement('button');
+        cancelButton.id = 'edit-cancel';
+        cancelButton.innerText = 'Cancel'
+        cancelButton.classList.toggle('review-button-visible');
+        const submitButton = document.createElement('button');
+        submitButton.id = 'edit-submit';
+        submitButton.innerText = 'Submit';
+        submitButton.classList.toggle('review-button-visible');
+        attachCancelListener(cancelButton);
+        attachSubmitListener(submitButton);
+        attachEditListener(editButton);
+        attachDeleteListener(deleteButton);
+        reviewList.prepend(reviewContainer);
+        reviewContainer.appendChild(userName);
+        reviewContainer.appendChild(createdAt);
+        reviewContainer.appendChild(reviewText);
+        reviewContainer.appendChild(hiddenInput);
+        reviewContainer.appendChild(editButton);
+        reviewContainer.appendChild(deleteButton);
+        reviewContainer.appendChild(cancelButton);
+        reviewContainer.appendChild(submitButton);
       } else {
         throw res;
       }
@@ -26,27 +128,22 @@ document.addEventListener('DOMContentLoaded', async (e) => {
 
   const reviewEdit = document.getElementById('review-edit')
   const reviewDelete = document.getElementById('review-delete')
-  const gameId = document.getElementById('reviewForm__gameId').value
+  const reviewCancel = document.getElementById('edit-cancel');
+  const reviewSubmit = document.getElementById('edit-submit');
 
-  reviewEdit.addEventListener('click', async e => {
-    const reviewId = reviewEdit.classList[0]
+  if (reviewEdit) {
+    attachEditListener(reviewEdit);
+  }
 
-  })
+  if (reviewDelete) {
+    attachDeleteListener(reviewDelete);
+  }
 
-  reviewDelete.addEventListener('click', async e => {
-    const reviewId = reviewDelete.previousSibling.previousSibling.value
-    try {
-      const res = await fetch(`/api/games/${gameId}/reviews/${reviewId}`, { method: 'DELETE'})
-      if (res.ok) {
-        const reviewDiv = reviewDelete.parentNode
-        reviewDiv.parentNode.removeChild(reviewDiv)
+  if (reviewCancel) {
+    attachCancelListener(reviewCancel);
+  }
 
-      } else {
-        window.alert('Comment could not be deleted')
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  })
-
+  if (reviewSubmit) {
+    attachSubmitListener(reviewSubmit);
+  }
 });
