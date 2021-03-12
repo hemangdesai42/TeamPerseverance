@@ -26,7 +26,7 @@ const addToGameShelf = async function(gameId, userId, category, res) {
     res.redirect(`/games/${gameId}`)
 }
 
-router.get('/:id(\\d+)/played', asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/played', asyncHandler(async (req, res) => {
     const gameId = req.params.id;
     if (res.locals.authenticated) {
         const user = res.locals.user;
@@ -35,7 +35,7 @@ router.get('/:id(\\d+)/played', asyncHandler(async (req, res) => {
     res.redirect(`/games/${gameId}`)
 }));
 
-router.get('/:id(\\d+)/playing', asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/playing', asyncHandler(async (req, res) => {
     const gameId = req.params.id;
     if (res.locals.authenticated) {
         const user = res.locals.user;
@@ -44,7 +44,7 @@ router.get('/:id(\\d+)/playing', asyncHandler(async (req, res) => {
     res.redirect(`/games/${gameId}`)
 }));
 
-router.get('/:id(\\d+)/wishlist', asyncHandler(async (req, res) => {
+router.post('/:id(\\d+)/wishlist', asyncHandler(async (req, res) => {
     const gameId = req.params.id;
     if (res.locals.authenticated) {
         const user = res.locals.user;
