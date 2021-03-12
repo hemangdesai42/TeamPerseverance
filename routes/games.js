@@ -10,50 +10,44 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res)=> {
     const ratings = await Rating.findAll({ where: { gameId }});
 
     let user;
-    let gameShelf;
+    let gameshelf;
+    let userRating;
     if (res.locals.authenticated) {
         user = res.locals.user;
-        console.log(user)
-        gameShelf = await GameShelf.findAll({ where: { userId: user.id, gameId }})
+        gameshelf = await GameShelf.findOne({ where: { userId: user.id, gameId }})
+        userRating = await Rating.findOne({ where: {userId: user.id, gameId }, attributes: ['id', 'rating']});
     }
-    console.log('reviews');
-    res.render('game', { game, title: Game.name, gameShelf, user, reviews, ratings });
+    res.render('game', { game, title: game.name, gameshelf, user, reviews, ratings, userRating });
 }));
 
-const addToGameShelf = async function(gameId, userId, category, res) {
-    await GameShelf.create({ gameId, userId, category})
-
+router.post('/:id(\\d+)/gameshelf/:category', asyncHandler(async (req, res) => {
+    const gameId = req.params.id;
+    const category = req.params.category;
+    if (res.locals.authenticated) {
+        const user = res.locals.user;
+        await GameShelf.create({gameId, userId: user.id, category });
+    }
     res.redirect(`/games/${gameId}`)
-}
+}));
 
-router.post('/:id(\\d+)/played', asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)/gameshelf/:category', asyncHandler(async (req, res) => {
+    const gameId = req.params.id;
+    const category = req.params.category;
+    if (res.locals.authenticated) {
+        const user = res.locals.user;
+        await GameShelf.destroy({where: { userId: user.id, gameId }});
+        await GameShelf.create({gameId, userId: user.id, category });
+    }
+    res.redirect(`/games/${gameId}`);
+}));
+
+router.delete('/:id(\\d+)/gameshelf', asyncHandler(async (req, res) => {
     const gameId = req.params.id;
     if (res.locals.authenticated) {
         const user = res.locals.user;
-        return await addToGameShelf(gameId, user.id, "Played", res)
+        await GameShelf.destroy({where: {userId: user.id, gameId }});
     }
     res.redirect(`/games/${gameId}`)
 }));
-
-router.post('/:id(\\d+)/playing', asyncHandler(async (req, res) => {
-    const gameId = req.params.id;
-    if (res.locals.authenticated) {
-        const user = res.locals.user;
-        return await addToGameShelf(gameId, user.id, "Playing", res)
-    }
-    res.redirect(`/games/${gameId}`)
-}));
-
-router.post('/:id(\\d+)/wishlist', asyncHandler(async (req, res) => {
-    const gameId = req.params.id;
-    if (res.locals.authenticated) {
-        const user = res.locals.user;
-        return await addToGameShelf(gameId, user.id, "Wishlist", res)
-    }
-    res.redirect(`/games/${gameId}`)
-}));
-
-
-
 
 module.exports = router
