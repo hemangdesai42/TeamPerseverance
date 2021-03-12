@@ -28,30 +28,34 @@ block content
                 - var n = 0;
                 while n < 10
                     div.main__game
-                        img(src=games[n].image)
-                        div= games[n].name
-                        - n++
+                        a(href='/games/' + games[n].id)
+                            img(src=games[n].image)
+                            div= games[n].name
+                            - n++
             div.game2
                 - var n = 10;
                 while n < 20
                     div.main__game
-                        img(src=src=games[n].image)
-                        div= games[n].name
-                        - n++
+                        a(href='/games/' + games[n].id)
+                            img(src=src=games[n].image)
+                            div= games[n].name
+                            - n++
             div.game3
                 - var n = 20;
                 while n < 30
                     div.main__game
-                        img(src=src=games[n].image)
-                        div= games[n].name
-                        - n++
+                        a(href='/games/' + games[n].id)
+                            img(src=src=games[n].image)
+                            div= games[n].name
+                            - n++
             div.game4
                 - var n = 30;
                 while n < 40
                     div.main__game
-                        img(src=src=games[n].image)
-                        div= games[n].name
-                        - n++
+                        a(href='/games/' + games[n].id)
+                            img(src=src=games[n].image)
+                            div= games[n].name
+                            - n++
         if user
             div.gameshelf
                 p Game Shelf
@@ -67,7 +71,7 @@ block content
                     p Wishlist shelf
                     each game in gameShelf
                         if game.category === "Wishlist"
-        else 
+        else
             div.gameshelf-no
                 p Create an Account to start adding to your Game Shelf!
                 div.playing
