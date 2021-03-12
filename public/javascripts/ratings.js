@@ -1,3 +1,11 @@
+function updateAvgRating (avg) {
+    const ratingSpan = document.getElementById('game-rating');
+    const rating = parseFloat(avg).toFixed(1);
+    console.log(avg);
+    ratingSpan.innerText = "AVERAGE RATING: " + rating;
+}
+
+
 async function addRating(button) {
     button.addEventListener('click', async e => {
         const ratingSelect = document.getElementById('ratingSelect');
@@ -31,7 +39,7 @@ async function addRating(button) {
                 const ratingOpt = document.getElementById('opt-1');
                 ratingOpt.value = 'delete';
                 ratingOpt.innerText = 'Delete My Rating';
-                // Calculate Average
+                updateAvgRating(json.avg);
             } else {
                 throw res;
             }
@@ -50,8 +58,9 @@ async function editRating(button, userReview) {
         if (selectEl.value === 'delete') {
             try {
                 const res = await fetch(`/api/games/${gameId}/ratings/${ratingId}`,
-                {
-                    method: 'DELETE'
+                {   headers: {
+                    'Content-Type': 'application/json'},
+                    method: 'DELETE',
                 })
                 if (res.ok) {
                     const hiddenRating = document.getElementById('user-rated');
@@ -67,7 +76,15 @@ async function editRating(button, userReview) {
                     const ratingEditBtn = document.getElementById('ratingEdit');
                     ratingBtn.classList.toggle('rating-button-visible');
                     ratingEditBtn.classList.toggle('rating-button-visible');
-                    // Calulate Average
+                    console.log('after delete:' + res)
+                    const resJson = await res.json();
+                    console.log('after')
+                    console.log(resJson.ratings)
+                    if (resJson.ratings) {
+                        updateAvgRating(resJson.avg);
+                    } else {
+                        document.getElementById('game-rating').innerText = "NOT RATED";
+                    }
                 } else {
                     throw res;
                 }
@@ -84,8 +101,8 @@ async function editRating(button, userReview) {
                     body: JSON.stringify({ userRating: selectEl.value })
                 });
                 if (res.ok) {
-                    // FIX BUG
-                    // Recalculate average
+                    const json = await res.json();
+                    updateAvgRating(json.avg);
                 } else {
                     window.alert('Unable to change your rating at this time');
                     throw res;
