@@ -80,6 +80,8 @@ router.delete('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req,
         console.log('delete route')
         return res.json({ ratings: false })
     }
+    const avg = avgRating(ratings)
+    console.log(avg);
     res.json({ ratings: true, avg: avgRating(ratings) })
 }));
 

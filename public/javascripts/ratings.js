@@ -76,10 +76,10 @@ async function editRating(button, userReview) {
                     const ratingEditBtn = document.getElementById('ratingEdit');
                     ratingBtn.classList.toggle('rating-button-visible');
                     ratingEditBtn.classList.toggle('rating-button-visible');
-                    console.log('after delete:' + res)
+                    console.log(res.body)
                     const resJson = await res.json();
                     console.log('after')
-                    console.log(resJson.ratings)
+                    console.log(resJson)
                     if (resJson.ratings) {
                         updateAvgRating(resJson.avg);
                     } else {
