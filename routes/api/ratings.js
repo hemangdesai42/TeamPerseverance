@@ -47,15 +47,21 @@ router.put('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req, re
 
     const ratingId = req.params.ratingId
     const rating = req.body.userRating
+    console.log('rating passed in: ' + rating);
     let userRating = await Rating.findOne({where: {id: ratingId}});
-
+    console.log('userRating: ' + userRating);
+    console.log('rating: ' + userRating.rating);
+    console.log('gameId: ' + userRating.gameId);
+    console.log('userId: ' + userRating.userId);
     if (userRating.userId !== userId) {
         return res.status(403).end()
     };
 
     userRating.rating = rating;
-    await userRating.update();
-    const ratings = await Rating.findAll({ where: { gameId: req.params.id } })
+    console.log('rating before update: ' + userRating.rating)
+    userRating = await userRating.save();
+    console.log('rating after update: ' + userRating.rating);
+    const ratings = await Rating.findAll({ where: { gameId: req.params.gameId } })
     return res.json({ ratings: true, avg: avgRating(ratings), userRating });
 }));
 
@@ -64,19 +70,19 @@ router.delete('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req,
         return res.status(403).end()
     }
 
-    const userId = res.locals.user.id
-    const ratingId = req.params.ratingId
-    let userRating = await Rating.findByPk(ratingId);
+    const userId = res.locals.user.id;
+    const ratingId = req.params.ratingId;
+    let userRating = await Rating.findOne({ where: { userId, gameId: req.params.gameId } });
 
-    if (userReview.userId !== userId) {
+    if (userRating.userId !== userId) {
         return res.status(403).end()
     }
 
     await userRating.destroy()
     res.status(204);
-    const ratings = await Rating.findAll({ where: { gameId: req.params.id } })
-
-    if (!ratings) {
+    const ratings = await Rating.findAll({ where: { gameId: req.params.gameId } })
+    console.log('Got all rating');
+    if (ratings.length === 0) {
         return res.json({ ratings: false })
     }
     res.json({ ratings: true, avg: avgRating(ratings) })

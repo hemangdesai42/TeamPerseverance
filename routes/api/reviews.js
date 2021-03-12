@@ -19,13 +19,11 @@ router.post('/:id(\\d+)/reviews', asyncHandler(async(req, res, next) => {
 
     // Check to see if user already submitted a review
     let userReview = await Review.findOne({ where: {userId, gameId: req.params.id}})
-    console.log(userReview);
     if (userReview) {
         return res.json({submitted: false})
     }
     userReview = await Review.create({userId, gameId, review})
     const user = await User.findByPk(userId);
-    console.log(userId, gameId, review);
     return res.json({submitted: true, userReview, userName: user.userName })
 }))
 
