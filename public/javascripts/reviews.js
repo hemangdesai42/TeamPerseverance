@@ -1,5 +1,16 @@
 let ORIGINAL_REVIEW;
 
+const toggleAll = () => {
+  const editBtn = document.getElementById('review-edit');
+  const deleteBtn = document.getElementById('review-delete');
+  const cancelBtn = document.getElementById('edit-cancel');
+  const submitBtn = document.getElementById('edit-submit');
+  editBtn.classList.toggle('review-button-visible');
+  deleteBtn.classList.toggle('review-button-visible');
+  cancelBtn.classList.toggle('review-button-visible');
+  submitBtn.classList.toggle('review-button-visible');
+}
+
 const attachDeleteListener = element => {
   const gameId = document.getElementById('reviewForm__gameId').value
   element.addEventListener('click', async e => {
@@ -29,12 +40,7 @@ const attachEditListener = element => {
     textarea.value = reviewText;
     ORIGINAL_REVIEW = reviewText;
     reviewContainer.insertBefore(textarea, element.previousSibling);
-    element.classList.toggle('review-button-visible');
-    element.nextSibling.classList.toggle('review-button-visible');
-    const cancelEdit = element.nextSibling.nextSibling;
-    cancelEdit.classList.toggle('review-button-visible');
-    const submitEdit = cancelEdit.nextSibling;
-    submitEdit.classList.toggle('review-button-visible');
+    toggleAll();
   })
 }
 
@@ -48,16 +54,39 @@ const attachCancelListener = element => {
     const reviewParagraph = document.createElement('p');
     reviewParagraph.innerText = ORIGINAL_REVIEW;
     reviewContainer.insertBefore(reviewParagraph, inputElement);
-    inputElement.nextSibling.classList.toggle('review-button-visible');
-    inputElement.nextSibling.nextSibling.classList.toggle('review-button-visible');
-    element.classList.toggle('review-button-visible');
-    element.nextSibling.classList.toggle('review-button-visible');
+    toggleAll();
   })
 }
 
 const attachSubmitListener = element => {
   const gameId = document.getElementById('reviewForm__gameId').value
-
+  element.addEventListener('click', async e => {
+    const reviewTextarea = element.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
+    const reviewText = reviewTextarea.value;
+    const hiddenInput = reviewTextarea.nextSibling;
+    const reviewId = hiddenInput.value;
+    try {
+      const res = await fetch(`/api/games/${gameId}/reviews/${reviewId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userReview: reviewText })
+      });
+      if (res.ok) {
+        const reviewContainer = reviewTextarea.parentNode;
+        reviewContainer.removeChild(reviewTextarea);
+        const reviewParagraph = document.createElement('p');
+        reviewParagraph.innerText = reviewText;
+        reviewContainer.insertBefore(reviewParagraph, hiddenInput);
+        toggleAll();
+      } else {
+        window.alert('Unable to submit the review change at this time');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', async (e) => {
@@ -77,6 +106,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
       });
       if (res.ok) {
         const json = await res.json();
+        if (!json.submitted) {
+          window.alert('You have already submitted a review.  You can find and edit your review below');
+          return;
+        }
         const review = json.userReview;
         document.querySelector('#reviewForm textarea').value = '';
         const reviewList = document.querySelector('.review__list');
@@ -140,10 +173,12 @@ document.addEventListener('DOMContentLoaded', async (e) => {
   }
 
   if (reviewCancel) {
+    reviewCancel.classList.toggle('review-button-visible');
     attachCancelListener(reviewCancel);
   }
 
   if (reviewSubmit) {
+    reviewSubmit.classList.toggle('review-button-visible');
     attachSubmitListener(reviewSubmit);
   }
 });
