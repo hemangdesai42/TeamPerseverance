@@ -47,6 +47,13 @@ body {
   padding: 1rem;
 }
 
+.logo img {
+    transition: all 0.2s ease-in-out;
+}
+
+.logo img:hover {
+    transform: scale(1.05)
+}
 
 .logged-out a {
   display: flex;
