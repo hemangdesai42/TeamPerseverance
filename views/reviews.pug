@@ -5,18 +5,19 @@ div.reviews__text
   if user
     form(id='reviewForm' action='/api/games/' + game.id + '/reviews' method='post')
       input#reviewForm__gameId(type='hidden' name='gameId' value=game.id)
-      label(for='userReview')= user.name
+      label#form-user(for='userReview')= user.name
       textarea(name='userReview' placeholder='Leave a review...')
       button(type='submit') Submit Review
-div.review__list
+div.reviews__list
   each review in reviews
-    div
-      p= review.User.userName
-      p= review.createdAt
+    div.review
+      p#review-user= review.User.userName
+      //- p= review.createdAt
       p= review.review
-      if review.User.userName = user.userName
-        input(type='hidden' value=review.id name='reviewId')
-        button#review-edit Edit
-        button#review-delete Delete
-        button#edit-cancel Cancel
-        button#edit-submit Submit
+      if user
+        if review.User.userName === user.userName
+          input(type='hidden' value=review.id name='reviewId')
+          button#review-edit Edit
+          button#review-delete Delete
+          button#edit-cancel Cancel
+          button#edit-submit Submit

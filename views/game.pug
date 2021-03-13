@@ -31,35 +31,36 @@ block content
             div.logged-out
                 a(href="/users/sign-up" role="button") Sign Up
                 a(href="/users/login" role="button") Login
-        div.game-options
-            if user
-                if gameshelf
-                    div.gameShelf__dropDown
-                        button.gameShelf__dropDown-btn Game is in #{gameshelf.category}
-                        div.gameShelf__dropDown-content
-                            if gameshelf.category === 'Played'
-                                button#remove-played Remove from Played
-                                button#move-playing  Move to Playing
-                                button#move-wishlist Move to Wishlist
-                            if gameshelf.category === 'Playing'
-                                button#move-played Move to Played
-                                button#remove-playing  Remove from Played
-                                button#move-wishlist Move to Wishlist
-                            if gameshelf.category === 'Wishlist'
-                                button#move-played Move to Played
-                                button#move-playing  Move to Playing
-                                button#remove-wishlist Remove from Wishlist
+        div.game-image-options
+            div.game-options
+                if user
+                    if gameshelf
+                        div.gameShelf__dropDown
+                            button.gameShelf__dropDown-btn Game is in #{gameshelf.category}
+                            div.gameShelf__dropDown-content
+                                if gameshelf.category === 'Played'
+                                    button#remove-played Remove from Played
+                                    button#move-playing  Move to Playing
+                                    button#move-wishlist Move to Wishlist
+                                if gameshelf.category === 'Playing'
+                                    button#move-played Move to Played
+                                    button#remove-playing  Remove from Played
+                                    button#move-wishlist Move to Wishlist
+                                if gameshelf.category === 'Wishlist'
+                                    button#move-played Move to Played
+                                    button#move-playing  Move to Playing
+                                    button#remove-wishlist Remove from Wishlist
+                    else
+                        div.gameShelf__dropDown
+                            button.gameShelf__dropDown-btn= "Add to gameshelf"
+                            div.gameShelf__dropDown-content
+                                button#add-played Add to Played
+                                button#add-playing  Add to Playing
+                                button#add-wishlist Add to Wishlist
                 else
-                    div.gameShelf__dropDown
-                        button.gameShelf__dropDown-btn= "Add to gameshelf"
-                        div.gameShelf__dropDown-content
-                            button#add-played Add to Played
-                            button#add-playing  Add to Playing
-                            button#add-wishlist Add to Wishlist
-            else
-                div= 'Login to add to gameshelf'
-        div.game-image
-            img(src=game.image)
+                    div= 'Login to add to gameshelf'
+            div.game-image
+                img(src=game.image)
             div.ratingDiv
                 if userRating
                     input#user-rated(type='hidden' value=userRating.rating name='user-rating')
