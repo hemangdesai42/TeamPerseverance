@@ -4,7 +4,7 @@ const { User, GameShelf, Game, Review, Rating } = require('../db/models');
 const { asyncHandler } = require('./utils');
 
 router.get('/', asyncHandler(async (req, res) => {
-    const games = await Game.findAll({ attributes: ['name']});
+    const games = await Game.findAll({ attributes: ['name', 'id']});
     res.json({ games })
 }))
 
