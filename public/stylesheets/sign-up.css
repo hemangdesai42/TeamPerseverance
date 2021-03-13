@@ -15,8 +15,7 @@ html, body {
 }
 
 #sign-up-container h1 {
-    color: black;
-    -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: 1px white;
 }
 
 #sign-up-container input {
@@ -25,8 +24,6 @@ html, body {
 }
 
 #sign-up-container {
-  color: white;
-  text-shadow: 2px 2px black;
   border: black 3px solid;
   border-radius: 10px;
   display: grid;
@@ -37,7 +34,7 @@ html, body {
   margin: auto;
   top: 55%;
   transform: translateY(-50%);
-  background-color: rgba(128, 128, 128, 0.3);
+  background-color: rgba(128, 128, 128, 0.6);
   padding: 20px;
   /* box-shadow: 5px 10px; */
 }
@@ -131,8 +128,8 @@ input, textarea {
 
 #errors-container {
   color: white;
+  font-size: 12px;
   background-color: rgba(128, 128, 128, 0.3);
-  font-size: 0.95rem;
   position: absolute;
   border: 2px solid #cc0000;
   border-radius: 5px;
@@ -144,9 +141,28 @@ input, textarea {
   text-shadow: 1px 1px rgb(0,0,0);
 }
 
+@-webkit-keyframes blackWhite {
+  0% { background-color:rgba(255,255,255,0.2); }
+  50% { background-color: rgba(255,255,255,0.2); }
+  51% { background-color: rgba(255,0,0,0.2); }
+  100% { background-color: rgba(255,0,0,0.2); }
+}
+
+#errors-container {
+    background-color: black;
+    -webkit-animation-name: blackWhite;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+/* #errors-container:hover {
+  background-color: rgba(255, 0, 0, 0.3)
+} */
+
 #errors-container ul {
   list-style-type: none;
 }
+
 
 .submit-container {
   transition: all 0.2s ease-in-out;
@@ -162,6 +178,8 @@ input, textarea {
 
 .demo-container a {
   font-size: 12px;
+  color: black;
+  text-shadow: none;
   border: 3px solid white;
   padding: 3px;
   text-decoration: underline white;
@@ -174,6 +192,5 @@ input, textarea {
 }
 
 .demo-container:hover {
-  /* box-shadow: 5px 5px rgba(152, 140, 140, 0.7); */
-  transform: scale(1.05)
+  transform: scale(1.02)
 }
