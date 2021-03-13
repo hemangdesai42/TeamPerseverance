@@ -24,11 +24,15 @@ html, body {
   font-family: ROG;
 }
 
+
 .welcome {
     grid-area: h1;
-    font-size: 1rem;
-    padding: 15px 0px 0px 40px;
-    color: green
+    font-size: 3rem;
+    font-weight: bolder;
+    padding: 5px 0px 0px 40px;
+    color: white;
+    text-shadow: 3px 3px grey;
+    -webkit-text-stroke: 2px black;
   }
 
   .logout {
@@ -37,7 +41,7 @@ html, body {
     align-self: start;
     justify-self: end;
     color: green;
-    padding: 15px 40px 0px 0px
+    padding: 50px 60px 0px 0px
   }
 
 
@@ -50,12 +54,21 @@ html, body {
   .logo img {
     max-width: 80%;
     max-height: 50%;
+    min-width: 200px;
     padding: 1rem;
     align-self: center;
+    position: relative;
+    margin: auto;
   }
 
+.logo img {
+    transition: all 0.2s ease-in-out;
+}
 
-  .logged-out a {
+.logo img:hover {
+    transform: scale(1.05)
+}
+.logout a, .logged-out a {
     display: flex;
     max-width: 200px;
     grid-area: h1;
@@ -70,19 +83,23 @@ html, body {
     background-color: white;
   }
 
-  .logged-out a {
+.welcome, .logout a, .logged-out a {
     transition: all 0.2s ease-in-out;
   }
 
-  .logged-out a:hover {
+.weclome:hover, 
+.logout a:hover, 
+.logged-out a:hover {
     transform: scale(1.05)
-
   }
 
 .games-container {
     margin: 0 20px;
     display: grid;
     grid-area: main;
+    border: 6px solid black;
+    background-color: rgba(111, 107, 107, 0.30);
+    border-radius: 10px;
     /* border: 1px solid white; */
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -95,11 +112,19 @@ html, body {
     "game4 game4 game4";
 }
 
+.gameshelf-extra {
+    max-width: 20rem;
+    border: 6px solid black;
+    background-color: rgba(111, 107, 107, 0.30);
+    border-radius: 10px;
+}
 .games-container p {
     grid-area: header;
     color: white;
-    font-size: 25px;
+    font-size: 5em;
     justify-self: center;
+    text-shadow: 3px 3px grey;
+    -webkit-text-stroke: 2px black; 
 }
 
 .game1 {
@@ -131,9 +156,7 @@ html, body {
     grid-area: sidebar;
     display: grid;
     align-content: flex-start;
-    /* border: 1px solid white; */
     grid-template-columns: 1fr;
-    /* grid-template-rows: auto; */
     /* gap: 5px; */
     grid-template-areas:
     "header"
@@ -148,7 +171,14 @@ html, body {
 .gameshelf p {
     color: white;
     text-align: center;
+     text-shadow: 3px 3px grey;
+    -webkit-text-stroke: 2px black; 
     /* align-self: flex-start; */
+}
+
+.games-container p {
+    font-size: 30px;
+    align-self: center;
 }
 .shelf-title {
     grid-area: header;
@@ -156,31 +186,49 @@ html, body {
     font-size: 30px;
 }
 .played {
-    grid-area: played
+    grid-area: played;
+    padding-top: 15px;
+    padding-bottom: 2rem;
 }
 
 .playing {
     grid-area: playing;
+    padding-bottom: 2rem;
 }
 
 .wishlist {
-    grid-area: wishlist
+    grid-area: wishlist;
+    padding-bottom: 2rem;
 }
 
 .played-title {
-    grid-area: played-title
+    grid-area: played-title;
+    font-size: 25px;
+    color: white;
+    align-self: center;
+    margin-left: 90px;
+    -webkit-text-stroke: 2px black; 
 }
 
 .playing-title {
     grid-area: playing-title;
+    font-size: 25px;
+    color: white;
+    align-self: center;
+    margin-left: 90px;
+    -webkit-text-stroke: 2px black; 
 }
 
 .wishlist-title {
     grid-area: wishlist-title;
+    font-size: 25px;
+    color: white;
+    margin-left: 90px;
+    justify-content: center;
+    -webkit-text-stroke: 2px black; 
 }
 
 .played, .playing, .wishlist {
-    border: 1px solid white;
     width: 90%;
     display: flex;
     flex-wrap: nowrap;
@@ -188,12 +236,18 @@ html, body {
 }
 
 .main__game {
-    margin: 15px;
-    color: white;
+    margin: 15px; 
     text-align: center;
     transition: all 0.2s ease-in-out;
 }
+.main__game div {
+    -webkit-text-stroke: 1px black;
+    color: white;
+}
 
+.main__game div:hover {
+    text-shadow: 1px 1px grey;
+}
 .main__game img {
     border-radius: 5px;
 }
@@ -217,14 +271,14 @@ html, body {
     "wishlist";
 }
 
-.playing {
+.playing-no {
     grid-area: playing
 }
 
-.played {
+.played-no {
     grid-area: played;
 }
 
-.wishlist {
+.wishlist-no {
     grid-area: wishlist
 }
