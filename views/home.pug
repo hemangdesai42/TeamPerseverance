@@ -9,6 +9,7 @@ block content
     div.homepage
         div.logo
             a(href='/home')
+                img(src='../images/console-game-logo.png')
         if user
             div.welcome
                 p Welcome, #{user.name}!
@@ -23,7 +24,7 @@ block content
             //-     div.main__game
             //-         img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
             //-         div= game.name
-            p Games
+            p.game-title Games
             div.game1
                 - var n = 0;
                 while n < 10
@@ -58,25 +59,39 @@ block content
                             - n++
         if user
             div.gameshelf
-                p Game Shelf
-                div.playing
-                    p Playing shelf
-                    each game in gameShelf
-                        if game.category === "Playing"
-                div.played
-                    p Played shelf
-                    each game in gameShelf
-                        if game.category === "Played"
-                div.wishlist
-                    p Wishlist shelf
-                    each game in gameShelf
-                        if game.category === "Wishlist"
+                div.gameshelf-extra
+                    if gameshelf
+                        p.shelf-title Game Shelf
+                        div.playing-title Playing
+                        div.playing
+                            each shelf in gameshelf
+                                div.main__game
+                                    if shelf.category === "Playing"
+                                        a(href='/games/' + shelf.gameId)
+                                            img(src=shelf.Game.image)
+                                            div= shelf.Game.name
+                        div.played-title Played
+                        div.played
+                            each shelf in gameshelf
+                                div.main__game
+                                    if shelf.category === "Played"
+                                        a(href='/games/' + shelf.gameId)
+                                            img(src=shelf.Game.image)
+                                            div= shelf.Game.name
+                        div.wishlist-title Wishlist
+                        div.wishlist
+                            each shelf in gameshelf
+                                div.main__game
+                                    if shelf.category === "Wishlist"
+                                        a(href='/games/' + shelf.gameId)
+                                            img(src=shelf.Game.image)
+                                            div= shelf.Game.name
         else
             div.gameshelf-no
                 p Create an Account to start adding to your Game Shelf!
-                div.playing
+                div.playing-no
                     p Playing shelf
-                div.played
+                div.played-no
                     p Played shelf
-                div.wishlist
+                div.wishlist-no
                     p Wishlist shelf
