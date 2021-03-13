@@ -27,7 +27,7 @@ html, body {
   position: relative;
   width: fit-content;
   margin: auto;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   background-color: rgb(95, 95, 95);
   padding: 20px;
@@ -47,13 +47,23 @@ html, body {
 
 #logo-div img {
   display: block;
-  margin: auto;
+  margin-bottom: 10px;
 }
 
 #logo-div img {
-  height: 70%;
-  width: 70%;
-  /* Center the logo */
+  width: 100%;
+  max-width: 500px;
+  max-height: 30%;
+  padding: 1rem;
+  margin-bottom: 10px;
+}
+
+#logo-div img {
+    transition: all 0.2s ease-in-out;
+}
+
+#logo-div img:hover {
+    transform: scale(1.05)
 }
 
 .input-container, .submit-container {
@@ -69,7 +79,7 @@ html, body {
 
 .input-container {
   padding-top: 10px;
-
+  
 }
 
 .input-container textarea {

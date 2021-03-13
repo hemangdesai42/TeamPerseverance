@@ -52,9 +52,9 @@ html, body {
   }
 
   .logo img {
-    max-width: 80%;
-    max-height: 50%;
-    min-width: 200px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 30%;
     padding: 1rem;
     align-self: center;
     position: relative;
@@ -257,13 +257,22 @@ html, body {
 }
 
 .gameshelf-no {
-    display: grid;
+    margin: 0 20px;
     grid-area: sidebar;
+    max-width: 20rem;
+    text-align: center;
+    border: 6px solid black;
+    background-color: rgba(111, 107, 107, 0.30);
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-size: 30px;
+    text-shadow: 3px 3px grey;
     color: white;
-    border: 1px solid white;
+    -webkit-text-stroke: 2px black; 
+    display: grid;
+    align-content: flex-start;
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 5px;
+    /* gap: 5px; */
     grid-template-areas:
     "header"
     "playing"
@@ -272,13 +281,25 @@ html, body {
 }
 
 .playing-no {
-    grid-area: playing
+    grid-area: playing;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke: 2px black;
 }
 
 .played-no {
     grid-area: played;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke: 2px black;
 }
 
 .wishlist-no {
-    grid-area: wishlist
+    grid-area: wishlist;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke: 2px black;
 }
