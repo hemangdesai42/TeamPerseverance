@@ -112,12 +112,12 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         }
         const review = json.userReview;
         document.querySelector('#reviewForm textarea').value = '';
-        const reviewList = document.querySelector('.review__list');
+        const reviewList = document.querySelector('.reviews__list');
         const reviewContainer = document.createElement('div');
+        reviewContainer.classList.add('review');
         const userName = document.createElement('p');
         userName.innerText = json.userName;
-        const createdAt = document.createElement('p');
-        createdAt.innerText = review.createdAt;
+        userName.id = 'review-user';
         const reviewText = document.createElement('p');
         reviewText.innerText = review.review;
         const hiddenInput = document.createElement('input');
@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', async (e) => {
         attachDeleteListener(deleteButton);
         reviewList.prepend(reviewContainer);
         reviewContainer.appendChild(userName);
-        reviewContainer.appendChild(createdAt);
         reviewContainer.appendChild(reviewText);
         reviewContainer.appendChild(hiddenInput);
         reviewContainer.appendChild(editButton);
