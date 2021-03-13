@@ -37,11 +37,12 @@ body {
 
 .logo {
   grid-area: logo1;
-  margin: auto;
+  margin: 0 auto 50px auto;
 }
 
 .logo img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 500px;
   max-height: 30%;
   padding: 1rem;
 }
@@ -71,12 +72,26 @@ body {
 
 }
 
-.game-image {
+.game-image-options {
+  margin-right: 20px;
   grid-area: game-image;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+  "gameshelf"
+  "gameImage"
+  "rating"
+  "avgRating";
+}
+
+.game-image {
   justify-self: right;
   position: relative;
   height: 100%;
+  grid-area: gameImage;
 }
+
 
 .game-image, .game-info {
   margin-top: 40px;
@@ -118,10 +133,8 @@ body {
 }
 
 .game-options {
-  grid-area: game-image;
+  grid-area: gameshelf;
   justify-self: right;
-  margin-right: 1rem;
-  margin-top: 1rem;
 }
 
 .game-reviews {
@@ -138,24 +151,34 @@ body {
   display: block;
 }
 
-.gameShelf__dropDown-btn, #add-played, #add-playing, #add-wishlist, #ratingBtn {
+.gameShelf__dropDown-btn {
+
   background-color: rgb(105, 105, 105);
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
+.gameShelf__dropDown-content button {
+  background-color: rgba(105, 105, 105, 0.5);
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
 .ratingDiv {
-  grid-area: game-image;
-  align-self: flex-end;
+  grid-area: rating;
+  justify-self: right;
+  position: relative;
+  z-index: 1;
   margin-bottom: 4rem;
-  margin-right: 2rem;
+}
+
+#ratingSelect {
+  background-color: rgb(134, 134, 134);;
 }
 
 .avgRating {
-  grid-area: game-image;
+  grid-area: avgRating;
   color: white;
-  align-self: flex-end;
-  margin-bottom: 2rem;
-  margin-left: 10rem;
+  justify-self: right;
+  margin-top: -50px;
 }
 
 .gameShelf__dropDown-content {
@@ -164,10 +187,23 @@ body {
   z-index: 1;
 }
 
+.gameShelf__dropDown-content button {
+  width: 100%;
+  text-align: left;
+}
+
+.gameShelf__dropDown-content button:hover {
+  background-color: black;
+}
+
 .review-button-visible {
   display: none;
 }
 
 .rating-button-visible {
   display: none;
+}
+
+#game-rating {
+  text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
 }
