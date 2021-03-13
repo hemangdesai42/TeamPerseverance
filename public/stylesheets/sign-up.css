@@ -1,8 +1,4 @@
-@font-face {
-  font-family: 'ROG';
-  src: url('../fonts/batmfa__.ttf');
-}
-
+@import 'fonts.css';
 /* @font-face {
   font-family: 'HollowPoint';
   src: url('../fonts/HollowPoint-ezrx.otf');
@@ -18,8 +14,20 @@ html, body {
   font-family: ROG;
 }
 
+#sign-up-container h1 {
+    color: black;
+    -webkit-text-stroke: 1px white;
+}
+
+#sign-up-container input {
+  border-width:0px;
+  border:none;
+}
+
 #sign-up-container {
-  border-style: solid;
+  color: white;
+  text-shadow: 2px 2px black;
+  border: black 3px solid;
   border-radius: 10px;
   display: grid;
   justify-content: center;
@@ -29,11 +37,13 @@ html, body {
   margin: auto;
   top: 55%;
   transform: translateY(-50%);
-  background-color: rgb(95, 95, 95);
+  background-color: rgba(128, 128, 128, 0.3);
   padding: 20px;
   /* box-shadow: 5px 10px; */
 }
-
+#sign-up-container input{
+  font-family: SC;
+}
 /* #sign-up-title {
   font-size:
 } */
@@ -79,7 +89,7 @@ html, body {
 
 .input-container {
   padding-top: 10px;
-  
+
 }
 
 .input-container textarea {
@@ -120,7 +130,8 @@ input, textarea {
 }
 
 #errors-container {
-  color: red;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.3);
   font-size: 0.95rem;
   position: absolute;
   border: 2px solid #cc0000;
@@ -166,4 +177,3 @@ input, textarea {
   /* box-shadow: 5px 5px rgba(152, 140, 140, 0.7); */
   transform: scale(1.05)
 }
-
