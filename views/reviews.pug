@@ -8,6 +8,8 @@ div.reviews__text
       label#form-user(for='userReview')= user.name
       textarea(name='userReview' placeholder='Leave a review...')
       button(type='submit') Submit Review
+  else
+    h1.review-title User Reviews
 div.reviews__list
   each review in reviews
     div.review

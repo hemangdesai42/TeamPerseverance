@@ -5,6 +5,12 @@
   width: 500px;
 }
 
+.review-title {
+  text-align: center;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  color: black;
+}
+
 textarea {
   display: block;
   width: 100%;
