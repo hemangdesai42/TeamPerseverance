@@ -1,12 +1,15 @@
 const searchBar = document.getElementById('searchBar');
-const searchBarDiv = document.getElementsByClassName('navBar__searchBarDiv');
+const searchBarDiv = document.querySelector('.navBar__searchBarDiv');
 searchBar.addEventListener('keyup', async e => {
     let string = e.target.value.toLowerCase();
-    const searchDiv = document.createElement('div');
-    searchDiv.id = 'searchDiv'
-    if (searchBar.firstChild) {
-        searchBar.removeChild(searchDiv);
+    let searchDiv = document.getElementById('searchDiv')
+    if (!searchDiv) {
+        searchDiv = document.createElement('div');
+        searchDiv.id = 'searchDiv'
+    } else {
+        searchDiv.innerHTML = ''
     }
+
     if (string.length !== 0) {
         const gameObj = await loadGames();
         const gameArr = gameObj.games
@@ -21,7 +24,7 @@ searchBar.addEventListener('keyup', async e => {
                 searchDiv.appendChild(gameA);
             })
         }
-    searchBarDiv[0].appendChild(searchDiv);
+        searchBarDiv.appendChild(searchDiv);
     }
 })
 
