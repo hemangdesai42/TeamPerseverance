@@ -11,9 +11,9 @@ block content
         div.logo
             a(href='/home')
             img(src='../images/console-game-logo.png')
+        div.navBar__searchBarDiv
+            input#searchBar(name='searchBar' type='text' placeholder="Search...")
         if user
-            div.navBar__searchBarDiv
-                input#searchBar(name='searchBar' type='text')
             div.welcome
                 p Welcome, #{user.name}!
             div.logout
