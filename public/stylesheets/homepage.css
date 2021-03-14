@@ -29,20 +29,34 @@ a {
 }
 
 .navBar__searchBarDiv {
-    grid-area: h1;
     position: absolute;
-    margin-top: 10px;
-    margin-left: 10px;
+    display: inline-block;
+    top: 10px;
+    left: 10px;
 }
 
 #searchDiv {
-    background-color: white;
     font-family: SC;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 #searchBar {
-    background-color: white;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.searchBar__gameLink {
+    display: block;
+    padding: 3px;
+    color: white;
+    background-color: rgba(0,0,0, 0.9);
+}
+
+.searchBar__gameLink:hover {
+    background-color:black;
+    color: limegreen;
 }
 
 .welcome {
@@ -56,11 +70,11 @@ a {
 }
 
 .logout {
-grid-area: h4;
-font-size: 25px;
-align-self: start;
-justify-self: end;
-padding: 50px 60px 0px 0px
+    grid-area: h4;
+    font-size: 25px;
+    align-self: start;
+    justify-self: end;
+    padding: 50px 60px 0px 0px;
 }
 
 
@@ -114,6 +128,7 @@ margin: auto;
 
 .games-container {
     margin: 0 20px;
+    position: relative;
     display: grid;
     grid-area: main;
     border: 6px solid black;
