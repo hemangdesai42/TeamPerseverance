@@ -24,6 +24,9 @@ html, body {
   font-family: ROG;
 }
 
+a {
+    text-decoration: none;
+}
 
 .welcome {
     grid-area: h1;
@@ -87,8 +90,8 @@ html, body {
     transition: all 0.2s ease-in-out;
   }
 
-.weclome:hover, 
-.logout a:hover, 
+.weclome:hover,
+.logout a:hover,
 .logged-out a:hover {
     transform: scale(1.05)
   }
@@ -124,7 +127,7 @@ html, body {
     font-size: 5em;
     justify-self: center;
     text-shadow: 3px 3px grey;
-    -webkit-text-stroke: 2px black; 
+    -webkit-text-stroke: 2px black;
 }
 
 .game1 {
@@ -172,7 +175,7 @@ html, body {
     color: white;
     text-align: center;
      text-shadow: 3px 3px grey;
-    -webkit-text-stroke: 2px black; 
+    -webkit-text-stroke: 2px black;
     /* align-self: flex-start; */
 }
 
@@ -207,7 +210,7 @@ html, body {
     color: white;
     align-self: center;
     margin-left: 90px;
-    -webkit-text-stroke: 2px black; 
+    -webkit-text-stroke: 2px black;
 }
 
 .playing-title {
@@ -216,7 +219,7 @@ html, body {
     color: white;
     align-self: center;
     margin-left: 90px;
-    -webkit-text-stroke: 2px black; 
+    -webkit-text-stroke: 2px black;
 }
 
 .wishlist-title {
@@ -225,7 +228,7 @@ html, body {
     color: white;
     margin-left: 90px;
     justify-content: center;
-    -webkit-text-stroke: 2px black; 
+    -webkit-text-stroke: 2px black;
 }
 
 .played, .playing, .wishlist {
@@ -236,7 +239,7 @@ html, body {
 }
 
 .main__game {
-    margin: 15px; 
+    margin: 15px;
     text-align: center;
     transition: all 0.2s ease-in-out;
 }
@@ -268,7 +271,7 @@ html, body {
     font-size: 30px;
     text-shadow: 3px 3px grey;
     color: white;
-    -webkit-text-stroke: 2px black; 
+    -webkit-text-stroke: 2px black;
     display: grid;
     align-content: flex-start;
     grid-template-columns: 1fr;
