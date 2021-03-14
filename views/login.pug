@@ -18,6 +18,7 @@ block content
                 input(name="password" type="password" required)
             div.input-container
                 button(type="submit" class="login") Login
+                a(href='/users/sign-up') Register
     if errors
         each error in errors
-            div= error
+            div.errDiv= error

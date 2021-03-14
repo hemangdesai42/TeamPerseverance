@@ -6,12 +6,13 @@
 @font-face {
   font-family: 'SC';
   src: url('../fonts/SourceCodePro-Regular.ttf');
+  font-style: regular;
 }
 
 @font-face {
   font-family: 'SC';
   src: url('../fonts/SourceCodePro-Bold.ttf');
-  font-weight: bold;
+  font-style: bold;
 }
 
 @font-face {
