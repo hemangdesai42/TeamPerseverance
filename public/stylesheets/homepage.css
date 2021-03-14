@@ -28,6 +28,23 @@ a {
     text-decoration: none;
 }
 
+.navBar__searchBarDiv {
+    grid-area: h1;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#searchDiv {
+    background-color: white;
+    font-family: SC;
+    font-weight: bold;
+}
+
+#searchBar {
+    background-color: white;
+}
+
 .welcome {
     grid-area: h1;
     font-size: 3rem;
