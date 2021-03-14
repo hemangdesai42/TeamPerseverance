@@ -92,6 +92,9 @@ body {
   grid-area: gameImage;
 }
 
+.game-image img {
+  border-radius: 5px;
+}
 
 .game-image, .game-info {
   margin-top: 40px;
@@ -141,23 +144,31 @@ body {
   grid-area: game-reviews;
 }
 
-.gameShelf__dropDown {
+.gameShelf__dropDown,  .rating__dropDown {
   display: inline-block;
   position: relative;
-  margin-right: 2rem;
 }
 
 .gameShelf__dropDown:hover .gameShelf__dropDown-content {
   display: block;
 }
 
-.gameShelf__dropDown-btn {
+.rating__dropDown:hover .rating__dropDown-content {
+  display: block;
+}
 
+.gameShelf__dropDown-btn, .rating_dropDown-btn {
+  border-right: none;
   background-color: rgb(105, 105, 105);
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 .gameShelf__dropDown-content button {
+  background-color: rgba(105, 105, 105, 0.5);
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.rating__dropDown-content button {
   background-color: rgba(105, 105, 105, 0.5);
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
@@ -181,7 +192,7 @@ body {
   margin-top: -50px;
 }
 
-.gameShelf__dropDown-content {
+.gameShelf__dropDown-content, .rating__dropDown-content {
   display: none;
   position: absolute;
   z-index: 1;
@@ -190,17 +201,24 @@ body {
 .gameShelf__dropDown-content button {
   width: 100%;
   text-align: left;
+  border: none;
+}
+
+.rating__dropDown-content button {
+  width: 100%;
+  text-align: left;
+  border: none;
 }
 
 .gameShelf__dropDown-content button:hover {
   background-color: black;
 }
 
-.review-button-visible {
-  display: none;
+.rating__dropDown-content button:hover {
+  background-color: black;
 }
 
-.rating-button-visible {
+.review-button-visible {
   display: none;
 }
 
