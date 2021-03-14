@@ -36,33 +36,32 @@ a {
     color: white;
     text-shadow: 3px 3px grey;
     -webkit-text-stroke: 2px black;
-  }
+}
 
-  .logout {
-    grid-area: h4;
-    font-size: 25px;
-    align-self: start;
-    justify-self: end;
-    color: green;
-    padding: 50px 60px 0px 0px
-  }
+.logout {
+grid-area: h4;
+font-size: 25px;
+align-self: start;
+justify-self: end;
+padding: 50px 60px 0px 0px
+}
 
 
-  .logo {
-    grid-area: logo1;
-    align-self: center;
-    margin: 0px 0px 0px 180px;
-  }
+.logo {
+grid-area: logo1;
+align-self: center;
+margin: 0px 0px 0px 180px;
+}
 
-  .logo img {
-    width: 100%;
-    max-width: 500px;
-    max-height: 30%;
-    padding: 1rem;
-    align-self: center;
-    position: relative;
-    margin: auto;
-  }
+.logo img {
+width: 100%;
+max-width: 500px;
+max-height: 30%;
+padding: 1rem;
+align-self: center;
+position: relative;
+margin: auto;
+}
 
 .logo img {
     transition: all 0.2s ease-in-out;
@@ -84,7 +83,7 @@ a {
     border-radius: 5px;
     text-decoration: underline white;
     background-color: white;
-  }
+}
 
 .welcome, .logout a, .logged-out a {
     transition: all 0.2s ease-in-out;
