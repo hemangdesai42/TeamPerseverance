@@ -8,114 +8,59 @@ body {
 
 .game-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
-  gap: 0 4rem;
+  gap: 75px 4rem;
   grid-template-areas:
-  "h1 logo1 logo1 h4"
-  "game-image game-image game-info game-info"
-  "game-options game-options game-options game-options"
-  "game-reviews game-reviews game-reviews game-reviews";
+  "h1 logo1 h4"
+  "game-data game-data game-data"
+  "game-reviews game-reviews game-reviews";
 }
 
-.welcome {
-  grid-area: h1;
-  font-size: 1rem;
-  padding: 15px 0px 0px 15px;
-  color: green
-}
-
-.logout {
-  grid-area: h4;
-  font-size: 25px;
-  align-self: start;
-  justify-self: end;
-  color: green;
-  padding: 15px 10px 0px 0px
-}
-
-
-.logo {
-  grid-area: logo1;
-  margin: 0 auto 50px auto;
-}
-
-.logo img {
-  width: 100%;
-  max-width: 500px;
-  max-height: 30%;
-  padding: 1rem;
-}
-
-.logo img {
-    transition: all 0.2s ease-in-out;
-}
-
-.logo img:hover {
-    transform: scale(1.05)
-}
-
-.logged-out a {
-  display: flex;
-  max-width: 200px;
-  grid-area: h1;
-  font-size: 25px;
-  justify-content: space-around;
-  color: black;
-  margin-top: 10px;
-  margin-left: 10px;
-  border: 2px solid white;
-  border-radius: 5px;
-  text-decoration: underline white;
-  background-color: white;
-}
-
-.logged-out a {
-  transition: all 0.2s ease-in-out;
-}
-
-.logged-out a:hover {
-  transform: scale(1.05)
-
-}
-
-.game-image-options {
-  margin-right: 20px;
-  grid-area: game-image;
+.game-data {
+  position: relative;
+  width: fit-content;
+  margin: auto;
+  grid-area: game-data;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
+  gap: 0 50px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2.5fr 1fr;
   grid-template-areas:
-  "gameshelf"
-  "gameImage"
-  "rating"
-  "avgRating";
+  "game-image game-info"
+  "game-options game-info"
+}
+
+.game-options-container {
+  grid-area: game-options;
+  position: relative;
 }
 
 .game-image {
   justify-self: right;
   position: relative;
   height: 100%;
-  grid-area: gameImage;
+  grid-area: game-image;
 }
 
 .game-image img {
   border-radius: 5px;
 }
 
-.game-image, .game-info {
-  margin-top: 40px;
-}
-
 .game-info {
   grid-area: game-info;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color:rgb(214, 214, 214);
+  min-width: 400px;
   justify-self: left;
   margin-right: 20rem;
   letter-spacing: 2px;
   word-spacing: 2px;
   line-height: 120%;
+  border: black 3px solid;
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.6);
+  padding: 20px;
 }
 
 .game-info div {
@@ -143,8 +88,7 @@ body {
 }
 
 .game-options {
-  grid-area: gameshelf;
-  justify-self: right;
+  display: inline-block;
 }
 
 .game-reviews {
@@ -180,12 +124,14 @@ body {
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
-.ratingDiv {
-  grid-area: rating;
-  justify-self: right;
-  position: relative;
+.rating-shelf {
+  position: absolute;
+  right: 0;
   z-index: 1;
-  margin-bottom: 4rem;
+}
+
+.ratingDiv {
+  display: inline-block;
 }
 
 #ratingSelect {
@@ -193,10 +139,10 @@ body {
 }
 
 .avgRating {
-  grid-area: avgRating;
   color: white;
-  justify-self: right;
-  margin-top: -50px;
+  position: absolute;
+  bottom: 40%;
+  right: 1%;
 }
 
 .gameShelf__dropDown-content, .rating__dropDown-content {
@@ -231,4 +177,72 @@ body {
 
 #game-rating {
   text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
+}
+
+.welcome {
+  grid-area: h1;
+  font-size: 3rem;
+  font-weight: bolder;
+  padding: 5px 0px 0px 40px;
+  color: white;
+  text-shadow: 3px 3px grey;
+  -webkit-text-stroke: 2px black;
+}
+
+.logout {
+  grid-area: h4;
+  font-size: 25px;
+  align-self: start;
+  justify-self: end;
+  padding: 50px 60px 0px 0px
+}
+
+.logout a, .logged-out a {
+  display: flex;
+  max-width: 200px;
+  grid-area: h1;
+  font-size: 25px;
+  justify-content: space-around;
+  color: black;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 2px solid white;
+  border-radius: 5px;
+  text-decoration: underline white;
+  background-color: white;
+}
+
+.welcome, .logout a, .logged-out a {
+  transition: all 0.2s ease-in-out;
+}
+
+.weclome:hover,
+.logout a:hover,
+.logged-out a:hover {
+  transform: scale(1.05)
+}
+
+.logo {
+  grid-area: logo1;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 100%;
+  max-width: 500px;
+  min-width: 200px;
+  max-height: 30%;
+  padding: 1rem;
+  align-self: center;
+  position: relative;
+  margin: auto;
+}
+
+.logo img {
+    transition: all 0.2s ease-in-out;
+}
+
+.logo img:hover {
+    transform: scale(1.05)
 }

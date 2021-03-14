@@ -31,85 +31,75 @@ block content
             div.logged-out
                 a(href="/users/sign-up" role="button") Sign Up
                 a(href="/users/login" role="button") Login
-        div.game-image-options
+        div.game-data
             div.game-image
                 img(src=game.image)
-            div.ratingDiv
-                if userRating
-                    input#user-rated(type='hidden' value=userRating.rating name='user-rating')
-                    input#user-rated-id(type='hidden' value=userRating.id name='user-rating-id')
-                div.rating__dropDown
-                    if userRating
-                        button.rating__dropDown-btn Edit Rating
-                        div.rating__dropDown-content
-                            button#remove-rating Remove Rating
-                            button#edit-1 1
-                            button#edit-2 2
-                            button#edit-3 3
-                            button#edit-4 4
-                            button#edit-5 5
-                    else
-                        button.rating__dropDown-btn Rate Game
-                        div.rating__dropDown-content
-                            button#add-1 1
-                            button#add-2 2
-                            button#add-3 3
-                            button#add-4 4
-                            button#add-5 5
-                //- select#ratingSelect(name="rating")
-                //-     if userRating
-                //-         option#opt-1(value='delete') Delete My Rating
-                //-     else
-                //-         option#opt-1(value=null) Rating
-                //-     option(value=1) 1
-                //-     option(value=2) 2
-                //-     option(value=3) 3
-                //-     option(value=4) 4
-                //-     option(value=5) 5
-                //- button#ratingEdit Edit My Rating
-                //- button#ratingBtn Submit My Rating
-            div.game-options
-                if user
-                    if gameshelf
-                        div.gameShelf__dropDown
-                            button.gameShelf__dropDown-btn Game is in #{gameshelf.category}
-                            div.gameShelf__dropDown-content
-                                if gameshelf.category === 'Played'
-                                    button#remove-played Remove from Played
-                                    button#move-playing  Move to Playing
-                                    button#move-wishlist Move to Wishlist
-                                if gameshelf.category === 'Playing'
-                                    button#move-played Move to Played
-                                    button#remove-playing  Remove from Played
-                                    button#move-wishlist Move to Wishlist
-                                if gameshelf.category === 'Wishlist'
-                                    button#move-played Move to Played
-                                    button#move-playing  Move to Playing
-                                    button#remove-wishlist Remove from Wishlist
-                    else
-                        div.gameShelf__dropDown
-                            button.gameShelf__dropDown-btn= "Add to gameshelf"
-                            div.gameShelf__dropDown-content
-                                button#add-played Add to Played
-                                button#add-playing  Add to Playing
-                                button#add-wishlist Add to Wishlist
-                else
-                    div= 'Login to add to gameshelf'
-            div.avgRating
-                +avgRating(ratings)
-        div.game-info
-            div.game-info__name= game.name
-            div
-                span Genre:
-                p  #{game.genre}
-            div
-                span Platform:
-                p  #{game.platform}
-            div
-                span Release Date:
-                p  #{game.releaseDate}
-            div
-                span Description:
-                p  #{game.description}
+            div.game-options-container
+                div.rating-shelf
+                    div.ratingDiv
+                        if user
+                            if userRating
+                                input#user-rated(type='hidden' value=userRating.rating name='user-rating')
+                                input#user-rated-id(type='hidden' value=userRating.id name='user-rating-id')
+                            div.rating__dropDown
+                                if userRating
+                                    button.rating__dropDown-btn Edit Rating
+                                    div.rating__dropDown-content
+                                        button#remove-rating Remove Rating
+                                        button#edit-1 1
+                                        button#edit-2 2
+                                        button#edit-3 3
+                                        button#edit-4 4
+                                        button#edit-5 5
+                                else
+                                    button.rating__dropDown-btn Rate Game
+                                    div.rating__dropDown-content
+                                        button#add-1 1
+                                        button#add-2 2
+                                        button#add-3 3
+                                        button#add-4 4
+                                        button#add-5 5
+                    div.game-options
+                        if user
+                            if gameshelf
+                                div.gameShelf__dropDown
+                                    //- button.gameShelf__dropDown-btn Game is in #{gameshelf.category}
+                                    button.gameShelf__dropDown-btn GameShelf
+                                    div.gameShelf__dropDown-content
+                                        if gameshelf.category === 'Played'
+                                            button#remove-played - Played
+                                            button#move-playing + Playing
+                                            button#move-wishlist + Wishlist
+                                        if gameshelf.category === 'Playing'
+                                            button#move-played + Played
+                                            button#remove-playing  - Played
+                                            button#move-wishlist + Wishlist
+                                        if gameshelf.category === 'Wishlist'
+                                            button#move-played + Played
+                                            button#move-playing  + Playing
+                                            button#remove-wishlist - Wishlist
+                            else
+                                div.gameShelf__dropDown
+                                    button.gameShelf__dropDown-btn= "Gameshelf"
+                                    div.gameShelf__dropDown-content
+                                        button#add-played + Played
+                                        button#add-playing + Playing
+                                        button#add-wishlist + Wishlist
+                div.avgRating
+                    +avgRating(ratings)
+            div.game-info
+                div.game-info__name= game.name
+                div
+                    span Genre:
+                    p  #{game.genre}
+                div
+                    span Platform:
+                    p  #{game.platform}
+                div
+                    span Release Date:
+                    p  #{game.releaseDate}
+                div
+                    span Description:
+                    p  #{game.description}
         div.game-reviews
             include reviews
