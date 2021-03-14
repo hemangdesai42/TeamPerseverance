@@ -1,8 +1,4 @@
-@font-face {
-  font-family: 'ROG';
-  src: url('../fonts/batmfa__.ttf');
-}
-
+@import 'fonts.css';
 /* @font-face {
   font-family: 'HollowPoint';
   src: url('../fonts/HollowPoint-ezrx.otf');
@@ -18,8 +14,17 @@ html, body {
   font-family: ROG;
 }
 
+#sign-up-container h1 {
+  -webkit-text-stroke: 1px white;
+}
+
+#sign-up-container input {
+  border-width:0px;
+  border:none;
+}
+
 #sign-up-container {
-  border-style: solid;
+  border: black 3px solid;
   border-radius: 10px;
   display: grid;
   justify-content: center;
@@ -27,13 +32,15 @@ html, body {
   position: relative;
   width: fit-content;
   margin: auto;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
-  background-color: rgb(95, 95, 95);
+  background-color: rgba(128, 128, 128, 0.6);
   padding: 20px;
   /* box-shadow: 5px 10px; */
 }
-
+#sign-up-container input{
+  font-family: SC;
+}
 /* #sign-up-title {
   font-size:
 } */
@@ -47,13 +54,23 @@ html, body {
 
 #logo-div img {
   display: block;
-  margin: auto;
+  margin-bottom: 10px;
 }
 
 #logo-div img {
-  height: 70%;
-  width: 70%;
-  /* Center the logo */
+  width: 100%;
+  max-width: 500px;
+  max-height: 30%;
+  padding: 1rem;
+  margin-bottom: 10px;
+}
+
+#logo-div img {
+    transition: all 0.2s ease-in-out;
+}
+
+#logo-div img:hover {
+    transform: scale(1.05)
 }
 
 .input-container, .submit-container {
@@ -110,8 +127,9 @@ input, textarea {
 }
 
 #errors-container {
-  color: red;
-  font-size: 0.95rem;
+  color: white;
+  font-size: 12px;
+  background-color: rgba(128, 128, 128, 0.3);
   position: absolute;
   border: 2px solid #cc0000;
   border-radius: 5px;
@@ -123,9 +141,28 @@ input, textarea {
   text-shadow: 1px 1px rgb(0,0,0);
 }
 
+@-webkit-keyframes blackWhite {
+  0% { background-color:rgba(255,255,255,0.2); }
+  50% { background-color: rgba(255,255,255,0.2); }
+  51% { background-color: rgba(255,0,0,0.2); }
+  100% { background-color: rgba(255,0,0,0.2); }
+}
+
+#errors-container {
+    background-color: black;
+    -webkit-animation-name: blackWhite;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}
+
+/* #errors-container:hover {
+  background-color: rgba(255, 0, 0, 0.3)
+} */
+
 #errors-container ul {
   list-style-type: none;
 }
+
 
 .submit-container {
   transition: all 0.2s ease-in-out;
@@ -141,6 +178,8 @@ input, textarea {
 
 .demo-container a {
   font-size: 12px;
+  color: black;
+  text-shadow: none;
   border: 3px solid white;
   padding: 3px;
   text-decoration: underline white;
@@ -153,7 +192,5 @@ input, textarea {
 }
 
 .demo-container:hover {
-  /* box-shadow: 5px 5px rgba(152, 140, 140, 0.7); */
-  transform: scale(1.05)
+  transform: scale(1.02)
 }
-

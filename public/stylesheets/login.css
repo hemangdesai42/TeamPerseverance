@@ -90,3 +90,31 @@
     display: block;
     border-radius: 5px;
   }
+
+.errDiv {
+  color: white;
+  background-color: rgba(128, 128, 128, 0.3);
+  position: absolute;
+  border: 2px solid #cc0000;
+  border-radius: 5px;
+  padding: 0 10px;
+  top: 80%;
+  left: 50%;
+  width: fit-content;
+  transform: translateX(-50%);
+  text-shadow: 1px 1px rgb(0,0,0);
+}
+
+@-webkit-keyframes blackWhite {
+  0% { background-color:rgba(255,255,255,0.2); }
+  50% { background-color: rgba(255,255,255,0.2); }
+  51% { background-color: rgba(255,0,0,0.2); }
+  100% { background-color: rgba(255,0,0,0.2); }
+}
+
+.errDiv {
+    background-color: black;
+    -webkit-animation-name: blackWhite;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+}

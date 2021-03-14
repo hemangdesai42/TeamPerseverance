@@ -21,9 +21,11 @@ button {
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
-.review__list {
+.reviews__list {
   color: whitesmoke;
   font-family: SC;
+  width: 500px;
+  margin: 0 auto 100px auto;
 }
 
 .review-name {
@@ -32,4 +34,22 @@ button {
 
 .reviews__text {
   color: white;
+}
+
+.review {
+  margin-top: 50px;
+  padding: 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+#review-user, #form-user {
+  font-family: ROG;
+  letter-spacing: 0.2rem;
+  color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.review button {
+  margin-right: 10px;
 }

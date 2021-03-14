@@ -73,13 +73,14 @@ router.delete('/:gameId(\\d+)/ratings/:ratingId(\\d+)', asyncHandler(async (req,
         return res.status(403).end()
     }
 
-    await userRating.destroy()
-    res.status(204);
+    await userRating.destroy();
     const ratings = await Rating.findAll({ where: { gameId: req.params.gameId } })
     if (Array.from(ratings).length === 0) {
         console.log('delete route')
         return res.json({ ratings: false })
     }
+    const avg = avgRating(ratings)
+    console.log(avg);
     res.json({ ratings: true, avg: avgRating(ratings) })
 }));
 
