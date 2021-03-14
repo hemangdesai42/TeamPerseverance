@@ -11,8 +11,6 @@ block content
         div.logo
             a(href='/home')
             img(src='../images/console-game-logo.png')
-        div.navBar__searchBarDiv
-            input#searchBar(name='searchBar' type='text' placeholder="Search...")
         if user
             div.welcome
                 p Welcome, #{user.name}!
@@ -27,6 +25,8 @@ block content
             //-     div.main__game
             //-         img(src='https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Halo-_Reach_box_art.png/220px-Halo-_Reach_box_art.png')
             //-         div= game.name
+            div.navBar__searchBarDiv
+                input#searchBar(name='searchBar' type='text' placeholder="Search...")
             p.game-title Games
             div.game1
                 - var n = 0;
